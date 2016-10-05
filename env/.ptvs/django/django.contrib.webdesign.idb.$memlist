@@ -1,0 +1,5 @@
+RemovedInDjango20Warning
+warnings
+templatetags
+apps
+default_app_config

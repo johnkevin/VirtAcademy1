@@ -1,0 +1,12 @@
+datetime
+mssql_fields
+six
+absolute_import
+unicode_literals
+pytz
+smart_text
+timezone
+DatabaseOperations
+django
+BaseDatabaseOperations
+settings

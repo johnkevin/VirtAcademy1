@@ -1,0 +1,289 @@
+{% extends "Layout.html" %}
+{% block css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/jquery-ui.custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap-editable.css' %}" />  
+{% endblock %}
+{% block content %}
+<div class="blockGeneral">
+    <div class="blockVisualizadorHeader">
+        <center><h5 class="widget-title green bolder"><i class="ace-icon glyphicon glyphicon-book"></i>  {{ context.tesis.title|upper }}</h5></center>
+    </div>
+    <div class="blockVisualizadorMain" style="border-bottom:0px;">
+        <div class="row">
+            <div class="col-xs-4 col-sm-3">
+                <span class="profile-picture center">{% load staticfiles %} 
+                    <a href="{{MEDIA_URL}}{{context.tesis.archivo}}">
+                    <img id="avatarprofile" class="editable img-responsive editable-click editable-empty"
+                        src="{% if context.tesis.imgVisualizar %}{{MEDIA_URL}}{{context.tesis.imgVisualizar}}{%else%}{{MEDIA_URL}}fondotesis.jpg{% endif %}"/>
+                    </a>
+                </span>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <ul id="tasks" class="item-list ui-sortable">
+                    <li class="item-blue clearfix ui-sortable-handle" style="position: relative; opacity: 1; z-index: auto; left: 0px; top: 0px;">
+					    <div class="col-xs-3 col-sm-3">Fecha:</div>
+                        <div class="col-xs-9 col-sm-9">{{context.tesis.FechaAceptacion| date:"d-m-Y"}}</div>
+					</li>
+                    <li class="item-red clearfix ui-sortable-handle" style="position: relative; opacity: 1; z-index: auto; left: 0px; top: 0px;">
+					    <div class="col-xs-3 col-sm-3">Facultad:</div>
+                        <div class="col-xs-9 col-sm-9">{{context.tesis.facultad|upper}}</div>
+					</li>
+					<li class="item-red clearfix ui-sortable-handle" style="position: relative; opacity: 1; z-index: auto; left: 0px; top: 0px;">
+					    <div class="col-xs-3 col-sm-3">Escuela:</div>
+                        <div class="col-xs-9 col-sm-9">{{context.tesis.escuela|upper}}</div>
+					</li>
+                    <li class="item-orange clearfix ui-sortable-handle" style="position: relative; opacity: 1; z-index: auto; left: 0px; top: 0px;">
+					    <div class="col-xs-3 col-sm-3">Optar T&iacute;tulo:</div>
+                        <div class="col-xs-9 col-sm-9">{{context.tesis.grado|upper}}</div>
+					</li>
+                    <li class="item-green clearfix ui-sortable-handle" style="position: relative; opacity: 1; z-index: auto; left: 0px; top: 0px;">
+					    <div class="col-xs-3 col-sm-3">Etiquetas</div>
+                        <div class="col-xs-9 col-sm-9">{{context.tesis.tags|upper}}</div>
+					</li>
+                    <li class="item-default clearfix ui-sortable-handle" style="position: relative; opacity: 1; z-index: auto; left: 0px; top: 0px;">
+					    <div class="col-xs-3 col-sm-3">Tesista(s)</div>
+                        <div class="col-xs-9 col-sm-9">{% if context.autores %}{% for autor in context.autores %}
+                            <i class="ace-icon glyphicon glyphicon-user blue"></i>  <a href="{% url 'profile' autor.user__username %}"><span class="editable">{{autor.user__last_name}}, {{autor.user__first_name}}</span></a><br/>{% endfor %}{% endif%}
+                        </div>
+					</li>
+                    <li class="item-default clearfix ui-sortable-handle" style="position: relative; opacity: 1; z-index: auto; left: 0px; top: 0px;">
+					    <div class="col-xs-3 col-sm-3">Asesor(es):</div>
+                        <div class="col-xs-9 col-sm-9">{% if context.autores %}{% for tutor in context.tutores %}
+                            <i class="ace-icon glyphicon glyphicon-user blue"></i>  <a href="{% url 'profile' tutor.user__username %}"><span class="editable">{{tutor.user__last_name}}, {{tutor.user__first_name}}</span></a><br/>{% endfor %}{% endif%}</div>
+					</li>
+				</ul>
+
+                <h4 class="widget-title smaller" style="color: #4383B4;border-bottom: 1px solid #DCE8F1;">
+                <i class="ace-icon glyphicon glyphicon-bookmark bigger-110"></i> RESUMEN
+				</h4>
+                <p>{{context.tesis.contenido|safe}}</p>
+            </div>
+        </div>
+    </div>
+        <div class="widget-box" style="margin: 0px -5px 0px 5px; border-top:0px;">
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    {% if user.is_authenticated %}
+                    <form name="fmrComments" action="{% url 'Comentario' %}" method="post" class="form-horizontal" role="form">
+                        {% csrf_token %}
+                        <div class="form-actions">
+                            <img class="pull-left" alt="Alex Doe's avatar" src="{% if context.profile %}{{MEDIA_URL}}{{context.profile.photo}}{%else%}{% static 'app/avatars/profile-pic.jpg' %}{%endif%}"
+                                     style="border:1px solid #DDE4ED;max-width:34px;position: relative;">
+                            <div class="input-group">
+                                <input type="hidden" value="{{context.tesis.id}}" name="idtesis"/>
+                                <input placeholder="Escribe un comentario..." type="text" class="form-control" name="Comment">
+							    <span class="input-group-btn">
+							        <button class="btn btn-sm btn-info no-radius"><i class="ace-icon fa fa-share"></i>Comentar</button>
+							    </span>
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="timeline-container" id="timeline_container">{% load staticfiles %} {% for dt in context.comentarios %}
+                                <div class="timeline-items" data-post-id="{{dt.id}}">
+                                    <div class="timeline-item clearfix" >
+                                        <div class="timeline-info">{% if dt.userProfile__photo %}
+                                            <img alt="{{dt.userProfile__ApePat|upper}} {{dt.userProfile__ApeMat|upper}}, {{dt.userProfile__Nombres|upper}}" src="{{MEDIA_URL}}{{dt.userProfile__photo}}" />{% else %}
+                                            <img alt="{{dt.userProfile__ApePat|upper}} {{dt.userProfile__ApeMat|upper}}, {{dt.userProfile__Nombres|upper}}" src="{% static 'app/avatars/profile-pic.jpg' %}" />{% endif %}
+										</div>
+										<div class="widget-box transparent" style="margin-right:5px;border-left-color: #1b809e;">
+										    <div class="widget-header widget-header-small">
+											    <h5 class="widget-title smaller">
+											        <a href="{% url 'profile' dt.user__username %}" class="blue" style="font-size:12px;">{{dt.userProfile__ApePat|upper }} {{dt.userProfile__ApeMat|upper}}, {{dt.userProfile__Nombres|upper}}</a>
+											    </h5>
+                                                <span class="widget-toolbar no-border green" style="font-size:11px;"> {{dt.create_at|date:"d M Y P"}}</span>
+											    <span class="widget-toolbar">
+                                                    <a href="#" data-action="collapse"><i class="ace-icon fa fa-chevron-up"></i></a> {% ifequal dt.user__username user.username  %}
+                                                    <a href="#" class="grey" data-post-id="{{dt.id}}" id="Editar" data-action="Editar"><i class="ace-icon fa fa-pencil blue bigger-100"></i></a>
+                                                    <a href="#" class="grey" data-post-id="{{dt.id}}" id="Eliminar" data-action="Eliminar"><i class="ace-icon fa fa-trash-o red bigger-100"></i></a>{% endifequal %}
+                                                </span>
+											</div>
+											<div class="widget-body">
+											    <div class="widget-main" id="mscomment_{{dt.id}}" data-post-id="{{dt.id}}">{{dt.comentario}}</div>
+										    </div>
+										</div>
+                                    </div>
+                                </div>{% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modal-form" class="modal" tabindex="-1" style="display: none;" aria-hidden="true" >
+                        <form name="fmrComments"  action="{% url 'Comentario' %}" method="post" class="form-horizontal" role="form" style="margin-top:-20px;">
+                        {% csrf_token %}
+                        <div class="modal-dialog">
+			                <div class="modal-content"> 
+                                <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal" style="font-size:22px;">&times;</button>
+                                    <h5 class="modal-title"><span class="blue bolder">Modificando comentario</span></h5>
+					            </div>
+                                <div class="modal-body">
+                                    <div class="row"><div class="col-sm-12">
+                                    <fieldset>
+                                        <input type="hidden" name="pkRegistro" id="pkRegistro"/>
+                                        <div class="form-group" style="margin-bottom:5px;width: 100%;margin-left: 2px;">
+                                            <input placeholder="Escribe un comentario..." type="text" class="form-control" name="Comment">
+                                        </div>
+                                        <div class="form-group" style="margin-bottom:5%!important;margin-top:6%!important;" id="mensaje"></div>
+                                    </fieldset>
+                                    </div></div>
+                                </div>
+                                <div class="modal-footer">
+					                <button class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i>Cancelar</button>
+						            <button class="btn btn-sm btn-primary" data-action="save"><i class="ace-icon fa fa-floppy-o"></i>Guardar</button>
+					            </div>
+                           </div>
+			            </div>
+                        </form>
+		            </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div id="posts">
+
+</div>
+<style>
+    
+    .blockGeneral {
+        width:80%;
+        padding-top:10px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .blockVisualizadorHeader {
+        display:block;
+        width:100%;
+        background-size: 70%;
+        border: 1px solid #d3dce7;
+        border-top-width: 5px;
+        border-top-color: #1b809e;
+        margin:10px 0px 0px 5px;
+        padding:10px 10px 0px 10px;
+        position:relative;
+        border-style: solid;
+        text-decoration: none;
+        background-color:#f5f5f5;
+    }
+    .blockVisualizadorMain {
+        display:block;
+        width:100%;
+        background-size: 70%;
+        border: 1px solid #d3dce7;
+        margin:0px 0px 0px 5px;
+        padding:10px 10px 0px 10px;
+        position:relative;
+        border-style: solid;
+        text-decoration: none;
+    }
+</style>
+
+{% endblock %}
+{% block scripts %}
+    {% load staticfiles %}
+    <script src="{% static 'app/js/jquery.form.js' %}"></script>
+    <script src="{% static 'app/js/DjangoAjax.js' %}"></script>
+    <script src="{% static 'app/js/reconnecting-websocket.min.js' %}"></script>
+    <script src="{% static 'app/js/bootbox.js' %}"></script>
+    <script src="{% static 'app/js/x-editable/bootstrap-editable.js' %}"></script>
+    <script src="{% static 'app/js/x-editable/ace-editable.js' %}"></script>
+
+<script>
+    $(function () {
+        $(document).on('click', '#Editar', function (event) {
+            event.preventDefault();
+            var _val = $(this).data('post-id');
+            var _comment=document.getElementById("mscomment_"+_val).innerHTML;
+            $("input[name=pkRegistro]").val(_val);
+            $("input[name=Comment]").val(_comment);
+            $('#modal-form').modal('show');
+        });
+    });
+
+        $(function () {
+            var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+            var ws_path = ws_scheme + '://' + window.location.host + window.location.pathname + "stream/";
+            var socket = new ReconnectingWebSocket(ws_path);
+            socket.onmessage = function (message) {
+                var data = JSON.parse(message.data);
+                var srcTimeLine_infor = "<div class='timeline-info'><img alt='' src='"+((data.photo=="")?("{% static 'app/avatars/profile-pic.jpg' %}'"):("{{MEDIA_URL}}"+data.photo+"'"))+"/></div>";
+                var userHeadTimeline = "<h5 class='widget-title smaller'><a href='/perfil/" + data.codUser +"/'class='blue' style='font-size:12px;'>" + data.user + "</a></h5>"
+                                        + "<span class='widget-toolbar no-border green' style='font-size:11px;'>" + data.created +" "+formatDate(dateString2Date(data.created_hours))+"</span>";
+                var bodyInTimeLine="<div class='timeline-item clearfix'>" +
+                                srcTimeLine_infor +"<div class='widget-box transparent' style='margin-right:5px;border-left-color: #1b809e;'>" +
+                                "<div class='widget-header widget-header-small'>" + userHeadTimeline 
+                                + "<span class='widget-toolbar'><a href='#' data-action='collapse'><i class='ace-icon fa fa-chevron-up'></i></a>" 
+                                + ((data.codUser=='{{user.username}}') ?("<a href='#' class='grey' data-post-id='"+data.id+"' id='Editar' data-action='Editar'><i class='ace-icon fa fa-pencil blue bigger-100'></i></a>"
+                                + "<a href='#' class='grey' data-post-id='"+data.id+"' id='Eliminar' data-action='Eliminar'><i class='ace-icon fa fa-trash-o red bigger-100'></i></a>"):(""))
+                                + "</span></div>"
+                                + "<div class='widget-body'><div class='widget-main' id='mscomment_"+data.id+"' data-post-id='"+data.id+"' >"
+                                + data.html
+                                 +"</div></div></div>";
+                var existing=$("div[data-post-id="+data.id+"]");
+                if(existing.length){
+                    existing.html(bodyInTimeLine);
+                }else{
+                   var content = "<div class='timeline-items'  data-post-id='"+data.id+"'>"+bodyInTimeLine+"</div>";
+                    $("#timeline_container").prepend(content);
+                }
+            };
+            socket.onopen = function() { }
+            socket.onclose = function(){ }
+        });
+    {% if user.is_authenticated %}
+        $("form[name=fmrComments]").ajaxForm({
+            beforeSend: function (event) {
+                $("input[name=Comment]").attr('disabled', true);
+                if($("input[name=pkRegistro]").val()=='' || $("input[name=pkRegistro]").val() == null || (typeof $("input[name=pkRegistro]").val() == "undefined")){
+                    $("button[name=btnComment]").attr('disabled', true);                
+                    console.log('entro aqui');
+                }else{
+                    $("input[name=Comment]").attr('disabled', false);
+                }
+            },
+            success: function (data) {
+                if(parseInt(data.valor)==0){
+                    if (parseInt(data.option) != 0) 
+                        msgInformation(true, data.mensaje);
+                    else 
+                        $("input[name=Comment]").val('');
+                    $("input[name=Comment]").attr('disabled', false);
+                    $("button[name=btnComment]").attr('disabled', false);
+                }else{
+                    if (parseInt(data.option) != 0){
+                        $("#mensaje").html("");
+			            var html = "";
+			            html += '<div class="alert alert-danger"><button class="close" data-dismiss="alert">'
+			            html += '<i class="ace-icon fa fa-times"></i></button>'
+			            html += data.mensaje
+			            html += '</div>'
+			            $('#mensaje').append(html);
+                    } 
+                    else {
+                        $("input[name=Comment]").val('');
+                        $("input[name=pkRegistro]").val('');
+                        $("#mensaje").html("");
+                        $('#modal-form').modal('hide');
+                    }
+                }
+            }
+        });
+    {%endif%}
+        function formatDate(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'p.m.' : 'a.m.';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+        function dateString2Date(dateString) {
+            var dt = dateString.split(/\-|\s/);
+            return new Date(dt.slice(0, 3).reverse().join('-') + ' ' + dt[3]);
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "Layout.html" %}
+{% block css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/jquery-ui.custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap-editable.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/datepicker.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="container body-container" >
+    <div class="row" >
+        <div class="col-xs-12 col-sm-1"></div>
+        <div class="col-xs-12 col-sm-10">
+            <div class="widget-box transparent">
+                <div class="widget-header widget-header-small">
+			        <div class="row">
+                        <div class="col-xs-12"><h4 class="widget-title smaller"><i class="ace-icon fa fa-cogs bigger-110"></i>TESIS PUBLICADAS</h4></div>
+				    </div>
+		        </div>
+            </div>
+            <div id="tblDataRegistros" class="dataTables_wrapper form-inline no-footer widget-box">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9">
+                        <div class="dataTables_length" id="sample-table-2_length">
+                            <form name="searchtesis" id="searchtesis" action="/Tesis/listado/" enctype="multipart/form-data" method="get" class="form-horizontal" role="form">
+                                <div class="form-group" >
+								    <label class="col-xs-12 col-sm-4 control-label no-padding-right"><b>B&uacute;squeda:</b></label>
+									<div class="cols-xs-12 col-sm-8">
+									    <div class="input-group" >
+                                            <input type="text" class="form-control search-query" id="search" name="search" value="{% if cadenaBusqueda%}{{cadenaBusqueda}}{% endif %}">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-sm btn-info" type="submit"><i class="ace-icon fa fa-search icon-on-right bigger-110"></i></button>
+                                            </span>
+								        </div>
+									</div>
+							    </div>
+                            </form>
+                        </div>&ensp;
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <a class="btn btn-sm btn-primary btn-block" href="/Tesis/Registrar" >
+                            <i class="ace-icon glyphicon glyphicon-plus bigger-100"></i>Agregar Tesis
+                        </a>
+                    </div>
+                </div>
+                <table id='tblbusqueda' class='table table-striped table-bordered table-hover dataTable no-footer'>
+                    <thead>
+                        <tr>
+                            <th><center>T&iacute;tulo</center></th>
+                            <th><center>Fecha Aprobaci&oacute;n</center></th>
+                            <th>Facultad</th>
+                            <th>Escuela</th>
+                            <th>Grado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if tesis %}
+                            {% for dt in tesis %}
+                               <tr>
+                                <td><a href="{% url 'tesispublicacion' dt.slug %}">{{dt.title}}</a></td>
+                                <td>{{ dt.FechaAceptacion| date:"d-m-Y" }}</td>
+                                <td>{{ dt.facultad__Desc_Facultad }}</td>
+                                <td>{{ dt.escuela__Desc_Escuela }}</td>
+                                <td>{{dt.grado__Desc_Grado}}</td>
+                                <td>
+                                    <div class="action-buttons">
+					                    <a class="green" data-id="{{dt.id}}" href="{% url 'tesisregistro' dt.id %}"><i class="ace-icon fa fa-pencil bigger-130"></i></a>
+					                    <a class="red" data-id="{{dt.id}}" id="delregtr"><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+                                    </div>
+                                </td>
+                               </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr><td colspan="7"><center>No se han encontrado registros</center></td></tr>
+                        {% endif %}
+                    </tbody>
+                 </table>
+                <div class="row" id="countMessage">{% if tesis %}&ensp;Se encontraron {{tesis|length}} registros{% endif %}
+                </div>
+            </div>
+            <ul class="pager">
+                {% if tesis.has_previous %}
+                <li class="previous">
+                    <a href="?{% if cadenaBusqueda%}search={{cadenaBusqueda}}&{% endif %}pagina={{ tesis.previous_page_number }}">← Anterior</a>
+                </li>
+                {% else %}
+                <li class="previous disabled">
+                    <a>← Anterior</a>
+                </li>
+                {% endif %}
+                <span>
+                    {{ tesis.number }} de {{ tesis.paginator.num_pages }}.
+                </span>
+                {% if tesis.has_next %}
+                <li class="next">
+				    <a href="?{% if cadenaBusqueda%}search={{cadenaBusqueda}}&{% endif %}pagina={{ tesis.next_page_number }}">Siguiente →</a>
+				</li>
+                {% else %}
+                <li class="next disabled">
+				    <a >Siguiente →</a>
+				</li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-1"></div>
+    </div>
+</div>
+{% endblock %}
+
+

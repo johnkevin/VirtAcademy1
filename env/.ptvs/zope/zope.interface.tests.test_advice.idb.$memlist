@@ -1,0 +1,11 @@
+_FUNKY_EXEC
+AdviceTests
+FrameInfoTest
+Test_isClassAdvisor
+test_suite
+_skip_under_py3k
+Test_minimalBases
+_skip_under_py2
+Test_determineMetaclass
+sys
+unittest

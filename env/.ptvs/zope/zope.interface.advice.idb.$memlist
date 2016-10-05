@@ -1,0 +1,9 @@
+addClassAdvisor
+minimalBases
+ClassType
+isClassAdvisor
+FunctionType
+__python3
+determineMetaclass
+sys
+getFrameInfo

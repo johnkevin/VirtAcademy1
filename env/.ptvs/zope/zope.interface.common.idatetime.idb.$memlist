@@ -1,0 +1,17 @@
+Interface
+time
+date
+IDateTime
+ITZInfo
+IDateClass
+Attribute
+IDateTimeClass
+classImplements
+datetime
+ITimeClass
+ITime
+timedelta
+tzinfo
+ITimeDeltaClass
+ITimeDelta
+IDate

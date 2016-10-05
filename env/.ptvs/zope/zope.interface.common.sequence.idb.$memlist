@@ -1,0 +1,9 @@
+IMinimalSequence
+Interface
+IFiniteSequence
+__docformat__
+IUniqueMemberWriteSequence
+IReadSequence
+IWriteSequence
+IExtendedReadSequence
+ISequence

@@ -1,0 +1,17 @@
+chatroom_routing
+BaseConsumer
+unicode_literals
+class_routing
+TestClassConsumer
+chatroom_routing_nolinestart
+name_that_thing
+Router
+Message
+consumer_3
+consumer_1
+route_class
+SimpleTestCase
+consumer_2
+route
+RoutingTests
+include

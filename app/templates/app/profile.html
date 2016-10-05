@@ -1,0 +1,107 @@
+{% extends "Layout.html" %}
+
+{% block css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/jquery-ui.custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap-editable.css' %}" />
+{% endblock %}
+
+{% block content %}
+    
+            <div class="container body-container" style="width:80%;" >
+                <div class="error-container" >
+                    <div id="user-profile-2" class="user-profile">
+	                    <div class="tabbable">
+	                        <ul class="nav nav-tabs padding-18">
+		                        <li class="active">
+			                        <a data-toggle="tab" href="#home" aria-expanded="true"><i class="ace-icon fa fa-user bigger-120"></i>Perfil</a>
+			                    </li>
+                                <li class="">
+			                        <a data-toggle="tab" href="#project" aria-expanded="false"><i class="ace-icon fa fa-lightbulb-o bigger-120"></i>
+                                        Mis Proyectos <span class="badge badge-info">2</span>
+				                    </a>
+			                    </li>
+                                <li>
+			                        <a data-toggle="tab" href="#lecturas"><i class="ace-icon fa fa-eye bigger-120"></i>
+				                        Proyectos revisados <span class="badge badge-info">2</span>
+				                    </a>
+			                    </li>
+                                <li>
+			                        <a data-toggle="tab" href="#Asesorados"><i class="ace-icon fa fa-book bigger-120"></i>
+				                        Proyectos Asesorados <span class="badge badge-info">2</span>
+				                    </a>
+			                    </li>
+			                    <li class="">
+			                        <a data-toggle="tab" href="#siguiendo" aria-expanded="false"><i class="ace-icon fa fa-user bigger-120"></i>
+					                    Siguiendo <span class="badge badge-info">2</span>
+				                    </a>
+			                    </li>
+			                    <li>
+			                        <a data-toggle="tab" href="#seguidores"><i class="ace-icon fa fa-group bigger-120"></i>
+					                    Seguidores <span class="badge badge-info">2</span>
+				                    </a>
+			                    </li>
+		                    </ul>
+                            <div class="tab-content no-border padding-18" style="border:1px solid #DDD;">
+		                        <div id="home" class="tab-pane active">
+                                    <div class="user-profile visible widget-box no-border">
+					                    <div class="widget-main">
+						                {% include 'app/perfilUser.html' %}
+					                    </div><!-- /.widget-main -->
+                                    </div>
+			                     </div><!-- /#home -->
+                                    <div id="project" class="tab-pane">
+			                            <div class="profile-feed row">
+				                            <div class="col-sm-12">
+                                                todos los proyectos
+					                        </div>
+				                        </div><!-- /#feed -->
+                                    </div>
+                                    <div id="Asesorados" class="tab-pane">
+                                        <div class="profile-users clearfix">
+                                            todos los proyectos asesorados
+				                        </div>
+                                    </div>
+			                        <div id="siguiendo" class="tab-pane">
+			                            <div class="profile-users clearfix">
+				                        </div>
+			                        </div><!-- /#siguiendo -->
+
+                                    <div id="lecturas" class="tab-pane">
+                                        holaaa xD
+                                    </div><!-- /#lecturas -->
+
+			                        <div id="seguidores" class="tab-pane">
+			                        </div><!-- /#seguidores -->
+		                        </div>
+	                        </div>
+                        </div>  
+                     </div>
+                </div>
+{% endblock %}
+{% block scripts %}
+    {% load staticfiles %}
+    <script src="{% static 'app/js/jquery.form.js' %}"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('#ChangeStates .estado').on('click', ActualizaEstado);
+        function ActualizaEstado() {
+            var estado = $(this).html();
+            var esta_ant = $('#nameestado').html();
+            $.ajax({
+                data: { 'estado': estado, 'esta_ant': esta_ant, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                url: '/ajax/CambiarEstado',
+                type: 'POST',
+                success: function (data) {
+                    if (data.valor1 && data.valor2) {
+                        $('#focusestado').removeClass(data.clas1);
+                        $('#focusestado').addClass(data.clas2);
+                        $("#nameestado").html("");
+                        $('#nameestado').append(estado);
+                    }
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

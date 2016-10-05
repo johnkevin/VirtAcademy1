@@ -1,0 +1,8 @@
+urlparse
+six
+absolute_import
+wsschemes
+parse_url
+create_url
+__all__
+urllib

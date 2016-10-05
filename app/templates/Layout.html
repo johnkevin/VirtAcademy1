@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8"/>
+    <title>{{ context.title }} - VirtAcademy</title>
+
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/font-awesome.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/ace-fonts.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/ace.css' %}" class="ace-main-stylesheet" id="main-ace-style"  />
+    <script src="{% static 'app/js/ace-extra.js'%}"></script>
+    {% block css %}
+    {% endblock %}
+</head>
+<body class="no-skin">
+    <div id="navbar" class="navbar navbar-default">
+        <script type="text/javascript">
+		    try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+		</script>
+		<div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left" style="min-width:20%;  max-width:65%;">
+			    <a href="/" class="navbar-brand" >
+                    <small>
+                        <i class="ace-icon fa fa-leaf"></i>
+                        <span class="white" id="id-text2"><strong>VirtAcademy</strong> </span>
+				    </small>
+				</a>
+            </div>
+            {% include 'app/loginpartial.html' %}
+        </div>
+    </div>
+    <div  class="main-container" id="main-container" >
+        <script type="text/javascript">
+		    try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+		</script>
+        <div>
+            <div class="error-container" style="margin:0px 0px 0px 0px!important">
+                {% block content %}{% endblock %}
+                <div class="footer">
+                    <div class="footer-inner">
+                        <div class="footer-content">
+                            <span class="bigger-110">
+                                 <p>&copy; Copyright {{ context.year }} - Coded By: <a href="https://twitter.com/jokeca" target="_blank"> @jokeca</a> </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/static/app/js/jquery.js'>" + "<" + "/script>");
+	</script>
+	<script type="text/javascript">
+	    if('ontouchstart' in document.documentElement) document.write("<script src='/static/app/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+    </script>
+	<script src="{% static 'app/js/bootstrap.js' %}"></script>
+    <script src="{%static 'app/js/jquery-ui.custom.js' %}" ></script>
+    <script src="{%static 'app/js/jquery.ui.touch-punch.js' %}"></script>
+    <script src="{%static 'app/js/jquery.easypiechart.js' %}"></script>
+	<script src="{%static 'app/js/jquery.sparkline.js' %}"></script>
+	<script src="{%static 'app/js/flot/jquery.flot.js' %}"></script>
+	<script src="{%static 'app/js/flot/jquery.flot.pie.js' %}"></script>
+	<script src="{%static 'app/js/flot/jquery.flot.resize.js' %}"></script>
+
+	<!-- ace scripts -->
+	<script src="{%static 'app/js/ace/elements.scroller.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.colorpicker.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.fileinput.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.typeahead.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.wysiwyg.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.spinner.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.treeview.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.wizard.js' %}"></script>
+	<script src="{%static 'app/js/ace/elements.aside.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.ajax-content.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.touch-drag.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.sidebar.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.sidebar-scroll-1.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.submenu-hover.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.widget-box.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.settings.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.settings-rtl.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.settings-skin.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.widget-on-reload.js' %}"></script>
+	<script src="{%static 'app/js/ace/ace.searchbox-autocomplete.js' %}"></script>
+    <script type="text/javascript">
+        function ConvertDateformat(date) {
+            return (date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate()) + '-' +
+                   ((date.getMonth() + 1) < 10 ? ('0' + (date.getMonth() + 1)) : (date.getMonth() + 1))
+                   + '-' + (date.getFullYear());
+        }
+        function msgInformation(paramError, paramMessage){
+            bootbox.dialog({
+                animate: true,
+                size: "small",
+                title: "<span class='" + (paramError ? "red bolder'>Mensaje de error" : "blue bolder'>Mensaje de Informaci&oacute;n") + "</span>",
+                message: paramMessage,
+                buttons: { "success": { "label": "OK", "className": "btn-sm btn-primary" } }
+            });
+        }
+    </script>
+    {% block scripts %}{% endblock %}   
+</body>
+</html>

@@ -1,0 +1,7 @@
+six
+WsgiToAsgiTests
+ChannelLayer
+unicode_literals
+TestCase
+WsgiToAsgiAdapter
+TestWsgiToAsgiAdapter

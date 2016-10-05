@@ -1,0 +1,411 @@
+{% extends "Layout.html" %}
+{% block css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/jquery-ui.custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/daterangepicker.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap-datetimepicker.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap-editable.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/datepicker.css' %}" />
+    
+{% endblock %}
+
+{% block content %}
+<div class="container body-container" >
+    <div class="row" >
+        <div class="col-xs-12 col-sm-1"></div>
+        <div class="col-xs-12 col-sm-10">
+            <div class="widget-box transparent">
+                <div class="widget-header widget-header-small">
+			        <div class="row">
+                        <div class="col-xs-12"><h4 class="widget-title smaller"><i class="ace-icon fa fa-cogs bigger-110"></i>CONFIGURACI&Oacute;N DE PAR&Aacute;METROS >> Tesistas</h4></div>
+				    </div>
+		        </div>
+            </div>
+            <div id="tblDataRegistros" class="dataTables_wrapper form-inline no-footer widget-box">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9">
+                        <div class="dataTables_length" id="sample-table-2_length">
+                                <label>B&uacute;squeda: </label> &ensp;
+                                <div class="checkbox">
+                                    <label>
+									    <input name="form-field-checkbox" id="form-field-checkbox" type="checkbox" class="ace" checked>
+								        <span class="lbl"> Todos</span>
+							        </label>
+                                </div>
+                                <div class="input-group">
+							        <span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>
+                                    <input disabled class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="{% now "d/m/Y" %} - {% now "d/m/Y" %}">
+                                    <span class="input-group-btn"><button id="btnfrmParamTesista" class="btn btn-info btn-sm"><span class="ace-icon fa fa-search icon-on-right bigger-110"></span></button></span>
+                                </div>
+                        </div>&ensp;
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <button class="btn btn-sm btn-primary btn-block" id="frmModalForm" ><i class="ace-icon glyphicon glyphicon-plus bigger-100"></i>Agregar</button>
+                                <!--data-target="#modal-form" data-toggle="modal"><i class="ace-icon glyphicon glyphicon-plus bigger-100"></i>Agregar</button>-->
+                    </div>
+                </div>
+                <table id='tblbusqueda' class='table table-striped table-bordered table-hover dataTable no-footer'>
+                    <thead>
+                        <tr>
+                            <th><center><i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>Fecha Inicio</center></th>
+                            <th><center><i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>Fecha Fin</center></th>
+                            <th>Cant. Tesistas</th><th>Observaci&oacute;n</th><th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>{% if context.parametroTesis %}
+                        {% for parametro in context.parametroTesis %}<tr>
+                            <td>{{parametro.fecha_Inicio| date:"d-m-Y"}}</td>
+                            <td>{{parametro.fecha_Fin| date:"d-m-Y"}}</td>
+                            <td>{% ifequal parametro.cant_minimo parametro.cant_maximo %}Normal: {{parametro.cant_minimo}}{% else %}M&iacute;nimo: {{parametro.cant_minimo}} - M&aacute;ximo: {{parametro.cant_maximo}}{% endifequal %}</td>
+                            <td>{% if parametro.observacion %}{{parametro.observacion}}{% endif %}</td>
+                            <td><div class="action-buttons">
+					                <a class="green" data-id="{{parametro.id}}" id="regtr"><i class="ace-icon fa fa-pencil bigger-130"></i></a>
+					                <a class="red" data-id="{{parametro.id}}" id="delregtr"><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+	                         </div></td>
+                        </tr>{% endfor %}{% else %}
+                        <tr><td colspan="5"><center>No se han encontrado registros</center></td></tr>{% endif %}
+                    </tbody>
+                 </table>
+                <div class="row" id="countMessage">{% if context.parametroTesis %}&ensp;Se encontraron {{context.parametroTesis|length}} registros{% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 col-sm-1"></div>
+        <div id="modal-form" class="modal" tabindex="-1" style="display: none;" aria-hidden="true" >
+            <form name="frmsaveRegParamTesis" id="frmsaveRegParamTesis" action="/ajax/saveRegParamTesis/" method="post" class="form-horizontal" role="form" style="margin-top:-20px;">
+            {% csrf_token %}
+            <div class="modal-dialog">
+			    <div class="modal-content">
+				    <div class="modal-header">
+					    <button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="blue bigger">REGISTRO DE PAR&Aacute;METRO CANT. TESISTAS</h4>
+					</div>
+					<div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <fieldset>
+                                    <input type="hidden" name="pkRegistro" id="pkRegistro"/>
+								    <div class="form-group" style="margin-bottom:5px;">
+									    <label class="col-xs-12 col-sm-4 control-label no-padding-right"><b>Fecha Inicio:</b></label>
+									    <div class="cols-xs-12 col-sm-8">
+									        <div class="input-group" style="z-index: 1200 !important">
+                                                <span class="input-group-addon"><i class="ace-icon fa fa-calendar"></i></span>
+										        <input class="input-medium date-picker" id="form_field_dateIn" name="form_field_dateIn" type="text" 
+                                                data-date-format="dd-mm-yyyy" placeholder="DD-MM-YYYY" >
+								            </div>
+									    </div>
+								    </div>
+                                    <div class="form-group" style="margin-bottom:5px;">
+									    <label class="col-xs-12 col-sm-4 control-label no-padding-right"><b>Fecha Fin:</b></label>
+									    <div class="col-xs-12 col-sm-8">
+									        <div class="input-group" style="z-index: 1200 !important">
+                                                <span class="input-group-addon"><i class="ace-icon fa fa-calendar"></i></span>
+										        <input class="input-medium date-picker" id="form_field_dateFn" name="form_field_dateFn" type="text" 
+                                                data-date-format="dd-mm-yyyy" placeholder="DD-MM-YYYY" >
+								            </div>
+									    </div>
+								    </div>
+                                    <div class="form-group" style="margin-bottom:5px;">
+                                        <label class="col-xs-12 col-sm-4 control-label no-padding-right"><b>Cantidad M&iacute;nima:</b></label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <div class="input-medium" >
+                                                <div class="input-group number-spinner1" >
+                                                    <input required type="text" class="input-mini spinbox-input form-control" id="spinner1" name="spinner1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:5px;">
+                                        <label class="col-xs-12 col-sm-4 control-label no-padding-right" ><b>Cantidad M&aacute;xima:</b></label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <div class="input-medium" >
+                                                <div class="input-group number-spinner2" >
+                                                    <input type="text" class="input-mini spinbox-input form-control" id="spinner2" name="spinner2" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:5px;">
+                                        <label class="col-xs-12 col-sm-4 control-label no-padding-right" ><b>Observaci&oacute;n:</b></label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <textarea class="form-control" id="observacion" name="observacion" placeholder="Escribe una observaci&oacute;n" style="height:120px; width:80%;max-width:80%" maxlength="300"></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+					    <button class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i>Cancelar</button>
+						<button class="btn btn-sm btn-primary" data-action="save"><i class="ace-icon fa fa-floppy-o"></i>Guardar</button>
+					</div>
+				</div>
+			</div>
+            </form>
+		</div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {% load staticfiles %}
+    <script src="{% static 'app/js/jquery.form.js' %}"></script>
+    <script src="{% static 'app/js/DjangoAjax.js' %}"></script>
+    <script src="{% static 'app/js/date-time/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'app/js/x-editable/bootstrap-editable.js' %}"></script>
+    <script src="{% static 'app/js/x-editable/ace-editable.js' %}"></script>
+
+    <script src="{% static 'app/js/date-time/moment.js' %}"></script>
+    <script src="{% static 'app/js/date-time/daterangepicker.js' %}"></script>
+    <script src="{% static 'app/js/date-time/bootstrap-datetimepicker.js' %}"></script>
+    <script src="{% static 'app/js/jquery.validate.js' %}"></script>
+ 
+    <script src="{% static 'app/js/fuelux/fuelux.spinner.js' %}"></script>
+    <script src="{% static 'app/js/jquery.inputlimiter.1.3.1.js' %}"></script>
+    <script src="{% static 'app/js/bootbox.js' %}"></script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var _hoy = new Date();
+            var _dateStart = ConvertDateformat(_hoy);
+            var _dateEnd = _dateStart;
+            var _estado = true;
+
+            $('.date-picker').datepicker().next().on(ace.click_event, function () { $(this).prev().focus(); });
+            
+            $("#form_field_dateIn").on("changeDate", function (e) { $('#form_field_dateFn').datepicker('setStartDate', e.date); });
+            $("#form_field_dateFn").on("changeDate", function (e) { $('#form_field_dateIn').datepicker('setEndDate', e.date); });
+
+            var _min = 1;
+            $('#spinner1').ace_spinner({ value: 1, min: 1, max: 5, step: 1, on_sides: true, icon_up: 'ace-icon fa fa-plus smaller-75', icon_down: 'ace-icon fa fa-minus smaller-75', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
+            $('#spinner2').ace_spinner({ value: 1, min: _min, max: 5, step: 1, on_sides: true, icon_up: 'ace-icon fa fa-plus smaller-75', icon_down: 'ace-icon fa fa-minus smaller-75', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
+
+            $('.number-spinner2').on('click', '.spinbox-up, .spinbox-down', function (evt) {
+                if ($('#spinner2').val() <= $('#spinner1').val()) { $(".number-spinner2 .spinbox-down").attr("disabled", "disabled"); }
+                else { $(".number-spinner2 .spinbox-down").removeAttr("disabled"); }
+            });
+            $('.number-spinner1').on('click', '.spinbox-up, .spinbox-down', function (evt) {
+                if ($('#spinner2').val() <= $('#spinner1').val()) { $('#spinner2').ace_spinner('value', $('#spinner1').val());
+                    $(".number-spinner2 .spinbox-down").attr("disabled", "disabled");}
+                else { $(".number-spinner2 .spinbox-down").removeAttr("disabled");}
+                return;
+            });
+
+            function createCell(text) {
+                var td = document.createElement('td');
+                if (text) { td.innerText = text; }
+                return td;
+            }
+            function createCell_aux(text) {
+                var td = document.createElement('td');
+                if (text) { td.innerHTML = text; }
+                return td;
+            }
+
+            $('.date-picker').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            }).next().on(ace.click_event, function () {
+				    $(this).prev().focus();
+		    });
+
+            $('.input-daterange').datepicker({ autoclose: true });
+            
+            $('input[name=date-range-picker]').daterangepicker({
+                'applyClass': 'btn-sm btn-success',
+                'cancelClass': 'btn-sm btn-default',
+                locale: {
+                    applyLabel: 'Aceptar',
+                    cancelLabel: 'Cancelar',
+                }
+            }, function (start, end, label) {
+                _dateStart = start.format('DD-MM-YYYY');
+                _dateEnd=end.format('DD-MM-YYYY')
+            }).prev().on(ace.click_event, function () {
+				    $(this).next().focus();
+            });
+            
+            $('input[name=form-field-checkbox]').on('click', function () {
+                _estado = this.checked;
+                if(this.checked) $('input[name=date-range-picker]').attr('disabled','disabled');
+                else $('input[name=date-range-picker]').removeAttr('disabled','disabled');
+            })
+            function formartDate(date) {
+                if (date== '' || date == null || (typeof date == "undefined")) {
+                    return '';
+                } else {
+                    var Fecha = new Date();
+                    var sFecha = date || (Fecha.getDate() + "/" + (Fecha.getMonth() + 1) + "/" + Fecha.getFullYear());
+                    var sep = sFecha.indexOf('/') != -1 ? '/' : '-';
+                    var aFecha = sFecha.split(sep);
+                    var fecha = aFecha[2] + '-' + aFecha[1] + '-' + aFecha[0];
+                    return fecha;
+                }
+            }
+
+            $('#frmModalForm').on('click', function () {
+                $('#modal-form').find('.form-group').removeClass('has-error');
+                $('#modal-form').find('.form-group').find('.help-block').remove();
+                CleanComponents();
+            });
+            function CleanComponents() {
+                var _hoy = new Date();
+                $('#pkRegistro').val('');
+                $("#form_field_dateIn").datepicker("setDate", _hoy);
+                $("#form_field_dateFn").datepicker("setDate", _hoy);
+                $('#spinner1').ace_spinner('value', 1);
+                $('#spinner2').ace_spinner('value', 1);
+                $('#observacion').val('');
+                $('#modal-form').modal('show');
+                $("#form_field_dateIn").focus();
+            }
+                        
+            $('#frmsaveRegParamTesis').validate({
+                errorElement: 'div',
+                errorClass: 'help-block',
+                focusInvalid: false,
+                ignore: "",
+                rules: {
+                    form_field_dateIn: { required: true },
+                    form_field_dateFn: { required: true},
+                    spinner1:{ required:true },
+                    spinner2:{ required:true }
+                },
+                messages: {
+                    form_field_dateIn: { required: "Ingrese Fecha Inicio" },
+                    form_field_dateFn: { required: "Ingrese Fecha FIn" },
+                    spinner1: { required: "Ingrese cantidad m&iacute;nima" },
+                    spinner2: { required: "Ingrese cantidad m&aacute;xima" },
+                },
+                highlight: function (e) {
+                    $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+                },
+                success: function (e) {
+                    $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                    $(e).remove();
+                    $("form[name=frmsaveRegParamTesis]").ajaxForm({
+                        success: function (data) {
+                            $('#modal-form').modal("hide");
+                            if (parseInt(data.valor) == 0) {
+                                busquedaGrid();
+                            } else {
+                                msgInformation(true, data.mensaje);
+                            }
+                        }
+                    })
+                },
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element.parent());
+                },
+            });
+
+            function formatString(valor) {
+                if (valor == null || (typeof valor == "undefined")) return '';
+                else return valor;
+            }
+            $(function () {
+                $(document).on('click', '#regtr', function (event) {
+                    event.preventDefault();
+                    var _val = $(this).data('id');
+                    $.ajax({
+                        data: { 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(), 'IdReg': _val, },
+                        url: '/buscarParamRegistro',
+                        type: 'post',
+                        success: function (data) {
+                            if (parseInt(data.valor) == 0) {
+                                $('#pkRegistro').val(_val);
+                                $('#modal-form').find('.form-group').removeClass('has-error');
+                                $('#modal-form').find('.form-group').find('.help-block').remove();
+                                $("#form_field_dateIn").datepicker("setDate", formartDate(data.fechaIn));
+                                $("#form_field_dateFn").datepicker("setDate", formartDate(data.fechaFn));
+                                $('#spinner1').ace_spinner('value', parseInt(data.cantminimo));
+                                $('#spinner2').ace_spinner('value', parseInt(data.cantmaximo));
+                                $('#observacion').val(data.observacion);
+                                $('#modal-form').modal('show');
+                                $("#form_field_dateIn").focus();
+                            } else {
+                                msgInformation(true, data.mensaje);
+                            }
+                        }
+                    });
+                });
+            });
+
+            $('#btnfrmParamTesista').on('click', busquedaGrid);
+            function busquedaGrid() {
+                $('#tblDataRegistros').widget_box('reload');
+                $('#countMessage').html('');
+                $.ajax({
+                    data: { 'fechaInicio': _dateStart ,'fechaFin':_dateEnd, 'stateChecked':_estado},
+                    url: '/SearchRegParamTesis',
+                    type: 'post',
+                    success: function (data) {
+                        $('#tblbusqueda tbody').html("");
+                        var _assfcounttr = 0;
+                        $.each(data, function (i, item) {
+                            var row = document.createElement('tr');
+                            row.appendChild(createCell(formartDate(item.fields.fecha_Inicio)));
+                            row.appendChild(createCell(formartDate(item.fields.fecha_Fin)));
+                            row.appendChild(createCell((item.fields.cant_minimo == item.fields.cant_maximo) ? ("Normal: " + item.fields.cant_minimo) :
+                                                        ("Minimo: " + item.fields.cant_minimo + " - Maximo: " + item.fields.cant_maximo)));
+                            row.appendChild(createCell(formatString(item.fields.observacion)));
+                            row.appendChild(createCell_aux('<div class="action-buttons"><a class="green" data-id="' + item.pk + '" id="regtr" ><i class="ace-icon fa fa-pencil bigger-130"></i></a>'
+					                                  + '<a class="red" data-id="' + item.pk + '" id="delregtr"><i class="ace-icon fa fa-trash-o bigger-130"></i></a></div>'));
+                                                                        
+                            document.querySelector('#tblbusqueda tbody').appendChild(row);
+                            _assfcounttr++;
+                        });
+                        if (_assfcounttr > 0) {
+                            $('#countMessage').append("&ensp;Se encontraron " + _assfcounttr + " registros");
+                        } else {
+                            var row = document.createElement('tr');
+                            row.appendChild(createCell_aux('<center>No se han encontrado registros</center>')).setAttribute("colspan", "5");
+                            document.querySelector('#tblbusqueda tbody').appendChild(row);
+                        }
+                    }
+                }).always(function () {
+                    $('#tblDataRegistros').trigger('reloaded.ace.widget');
+                });
+
+                $("#delregtr").on(ace.click_event, function (){});
+            }
+
+            $(function () {
+                $(document).on('click', '#delregtr', function (event) {
+                    var _val = $(this).data('id');
+                    bootbox.dialog({
+                        animate:true,
+                        size:"small",
+                        message: "<span class='bigger-110'>&iquest;Desea eliminar este registro&#63;</span>",
+                        buttons:{
+                            "danger":{
+                                "label": "<i class='ace-icon fa fa-trash-o'></i> Eliminar!",
+                                "className": "btn btn-white btn-danger btn-bold btn-round",
+                                "callback": function () {
+                                    $.ajax({
+                                        data: { 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(), 'pkRegistro': _val, },
+                                        url: '/delRegParamTesis',
+                                        type: 'post',
+                                        success: function (data) {
+                                            if (parseInt(data.valor) == 0) {
+                                                $('#modal-form').modal("hide");
+                                                busquedaGrid();
+                                            } else {
+                                                msgInformation(true, data.mensaje);
+                                            }
+                                        }
+                                    });
+                                }
+                            },
+                            "cancel":{
+                                "label": "<i class='ace-icon fa fa-times'></i> Cancelar",
+                                "className": "btn btn-white btn-default btn-round"
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}

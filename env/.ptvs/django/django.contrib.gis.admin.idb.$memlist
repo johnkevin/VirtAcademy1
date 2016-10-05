@@ -1,0 +1,15 @@
+site
+__all__
+OpenLayersWidget
+ModelAdmin
+widgets
+VERTICAL
+StackedInline
+HAS_OSM
+OSMGeoAdmin
+AdminSite
+HORIZONTAL
+GeoModelAdmin
+options
+TabularInline
+autodiscover

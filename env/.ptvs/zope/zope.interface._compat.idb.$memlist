@@ -1,0 +1,10 @@
+CLASS_TYPES
+_normalize_name
+types
+PYTHON2
+_skip_under_py3k
+STRING_TYPES
+PYTHON3
+_skip_under_py2
+sys
+_BUILTINS

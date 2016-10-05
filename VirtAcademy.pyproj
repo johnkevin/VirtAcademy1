@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>VirtAcademy</Name>
+    <RootNamespace>VirtAcademy</RootNamespace>
+    <NameOfLastUsedPublishProfile>VirtAcademy</NameOfLastUsedPublishProfile>
+    <InterpreterId>{30b68be3-1d1f-4759-8090-15612a0b063c}</InterpreterId>
+    <InterpreterVersion>3.4</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>27e0cbd5-846e-4997-b87b-62f191edacf6</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\consumers.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\forms.py" />
+    <Compile Include="app\models.py" />
+    <Compile Include="app\profiles\models.py" />
+    <Compile Include="app\profiles\tests.py" />
+    <Compile Include="app\profiles\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\profiles\views.py" />
+    <Compile Include="app\profiles\__init__.py" />
+    <Compile Include="app\tests.py" />
+    <Compile Include="app\views.py" />
+    <Compile Include="app\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="VirtAcademy\asgi.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VirtAcademy\routing.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VirtAcademy\__init__.py" />
+    <Compile Include="VirtAcademy\settings.py" />
+    <Compile Include="VirtAcademy\urls.py" />
+    <Compile Include="VirtAcademy\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\profiles\" />
+    <Folder Include="app\profiles\templates\" />
+    <Folder Include="app\static\" />
+    <Folder Include="app\static\app\" />
+    <Folder Include="app\static\app\avatars\" />
+    <Folder Include="app\static\app\css\" />
+    <Folder Include="app\static\app\css\images\" />
+    <Folder Include="app\static\app\css\images\ie6\" />
+    <Folder Include="app\static\app\css\img\" />
+    <Folder Include="app\static\app\css\less\" />
+    <Folder Include="app\static\app\css\less\bootstrap\" />
+    <Folder Include="app\static\app\css\less\bootstrap\mixins\" />
+    <Folder Include="app\static\app\css\less\dropdown\" />
+    <Folder Include="app\static\app\css\less\ext\" />
+    <Folder Include="app\static\app\css\less\form\" />
+    <Folder Include="app\static\app\css\less\navbar\" />
+    <Folder Include="app\static\app\css\less\sidebar\" />
+    <Folder Include="app\static\app\css\less\skins\" />
+    <Folder Include="app\static\app\fonts\" />
+    <Folder Include="app\static\app\font\" />
+    <Folder Include="app\static\app\images\" />
+    <Folder Include="app\static\app\images\gallery\" />
+    <Folder Include="app\static\app\img\" />
+    <Folder Include="app\static\app\js\" />
+    <Folder Include="app\static\app\js\ace\" />
+    <Folder Include="app\static\app\js\date-time\" />
+    <Folder Include="app\static\app\js\flot\" />
+    <Folder Include="app\static\app\js\fuelux\" />
+    <Folder Include="app\static\app\js\jqGrid\" />
+    <Folder Include="app\static\app\js\jqGrid\i18n\" />
+    <Folder Include="app\static\app\js\markdown\" />
+    <Folder Include="app\static\app\js\libs\" />
+    <Folder Include="app\static\app\js\x-editable\" />
+    <Folder Include="app\static\app\_content\" />
+    <Folder Include="app\static\app\_fonts\" />
+    <Folder Include="app\static\app\_scripts\" />
+    <Folder Include="app\templates\" />
+    <Folder Include="app\templates\app\" />
+    <Folder Include="app\templates\archive\" />
+    <Folder Include="VirtAcademy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\static\app\avatars\fondblocktesis.jpg" />
+    <Content Include="app\static\app\avatars\fondvisualizador.png" />
+    <Content Include="app\static\app\avatars\fonjumbosearch.png" />
+    <Content Include="app\static\app\js\additional-methods.min.js" />
+    <Content Include="app\static\app\js\ajax-chosen.js" />
+    <Content Include="app\static\app\js\chosen.ajaxaddition.jquery.js" />
+    <Content Include="app\static\app\js\componentsCreate.js" />
+    <Content Include="app\static\app\js\DjangoAjax.js" />
+    <Content Include="app\static\app\js\libs\pdf.js" />
+    <Content Include="app\static\app\js\libs\processing-api.min.js" />
+    <Content Include="app\static\app\js\pdf.js" />
+    <Content Include="app\static\app\js\processing-api.min.js" />
+    <Content Include="app\static\app\js\reconnecting-websocket.min.js" />
+    <Content Include="app\templates\app\perfilUser.html" />
+    <Content Include="app\templates\app\PerfilUserModifcacion.html" />
+    <Content Include="app\templates\app\profile.html" />
+    <Content Include="app\templates\archive\ListadoArchivos.html" />
+    <Content Include="app\templates\archive\RegistroParamTesis.html" />
+    <Content Include="app\templates\archive\SubirArchivo.html" />
+    <Content Include="app\templates\archive\UploadFile.html" />
+    <Content Include="app\templates\archive\visualizador.html" />
+    <Content Include="app\templates\index.html" />
+    <Content Include="app\profiles\templates\index.html" />
+    <Content Include="app\static\app\avatars\avatar.png" />
+    <Content Include="app\static\app\avatars\avatar1.png" />
+    <Content Include="app\static\app\avatars\avatar2.png" />
+    <Content Include="app\static\app\avatars\avatar3.png" />
+    <Content Include="app\static\app\avatars\avatar4.png" />
+    <Content Include="app\static\app\avatars\avatar5.png" />
+    <Content Include="app\static\app\avatars\profile-pic.jpg" />
+    <Content Include="app\static\app\avatars\user.jpg" />
+    <Content Include="app\static\app\css\ace-fonts.css" />
+    <Content Include="app\static\app\css\ace-ie.css" />
+    <Content Include="app\static\app\css\ace-part2.css" />
+    <Content Include="app\static\app\css\ace-rtl.css" />
+    <Content Include="app\static\app\css\ace-skins.css" />
+    <Content Include="app\static\app\css\ace.css" />
+    <Content Include="app\static\app\css\ace.onpage-help.css" />
+    <Content Include="app\static\app\css\bootstrap-datetimepicker.css" />
+    <Content Include="app\static\app\css\bootstrap-duallistbox.css" />
+    <Content Include="app\static\app\css\bootstrap-editable.css" />
+    <Content Include="app\static\app\css\bootstrap-multiselect.css" />
+    <Content Include="app\static\app\css\bootstrap-timepicker.css" />
+    <Content Include="app\static\app\css\bootstrap.css" />
+    <Content Include="app\static\app\css\chosen-sprite%402x.png" />
+    <Content Include="app\static\app\css\chosen-sprite.png" />
+    <Content Include="app\static\app\css\chosen.css" />
+    <Content Include="app\static\app\css\colorbox.css" />
+    <Content Include="app\static\app\css\colorpicker.css" />
+    <Content Include="app\static\app\css\datepicker.css" />
+    <Content Include="app\static\app\css\daterangepicker.css" />
+    <Content Include="app\static\app\css\dropzone.css" />
+    <Content Include="app\static\app\css\font-awesome.css" />
+    <Content Include="app\static\app\css\fullcalendar.css" />
+    <Content Include="app\static\app\css\fullcalendar.print.css" />
+    <Content Include="app\static\app\css\images\border.png" />
+    <Content Include="app\static\app\css\images\border1.png" />
+    <Content Include="app\static\app\css\images\border2.png" />
+    <Content Include="app\static\app\css\images\controls.png" />
+    <Content Include="app\static\app\css\images\ie6\borderBottomCenter.png" />
+    <Content Include="app\static\app\css\images\ie6\borderBottomLeft.png" />
+    <Content Include="app\static\app\css\images\ie6\borderBottomRight.png" />
+    <Content Include="app\static\app\css\images\ie6\borderMiddleLeft.png" />
+    <Content Include="app\static\app\css\images\ie6\borderMiddleRight.png" />
+    <Content Include="app\static\app\css\images\ie6\borderTopCenter.png" />
+    <Content Include="app\static\app\css\images\ie6\borderTopLeft.png" />
+    <Content Include="app\static\app\css\images\ie6\borderTopRight.png" />
+    <Content Include="app\static\app\css\images\loading.gif" />
+    <Content Include="app\static\app\css\images\loading_background.png" />
+    <Content Include="app\static\app\css\images\meteorshower.jpg" />
+    <Content Include="app\static\app\css\images\meteorshower2.jpg" />
+    <Content Include="app\static\app\css\images\overlay.png" />
+    <Content Include="app\static\app\css\images\pattern.jpg" />
+    <Content Include="app\static\app\css\images\pattern.png" />
+    <Content Include="app\static\app\css\images\spritemap%402x.png" />
+    <Content Include="app\static\app\css\images\spritemap.png" />
+    <Content Include="app\static\app\css\img\alpha.png" />
+    <Content Include="app\static\app\css\img\hue.png" />
+    <Content Include="app\static\app\css\img\saturation.png" />
+    <Content Include="app\static\app\css\jquery-ui.css" />
+    <Content Include="app\static\app\css\jquery-ui.custom.css" />
+    <Content Include="app\static\app\css\jquery.gritter.css" />
+    <Content Include="app\static\app\css\less\ace-features.less" />
+    <Content Include="app\static\app\css\less\ace-nav.less" />
+    <Content Include="app\static\app\css\less\ace-responsive.less" />
+    <Content Include="app\static\app\css\less\ace-rtl.less" />
+    <Content Include="app\static\app\css\less\ace.less" />
+    <Content Include="app\static\app\css\less\basic.less" />
+    <Content Include="app\static\app\css\less\bootstrap\alerts.less" />
+    <Content Include="app\static\app\css\less\bootstrap\badges.less" />
+    <Content Include="app\static\app\css\less\bootstrap\bootstrap.less" />
+    <Content Include="app\static\app\css\less\bootstrap\breadcrumbs.less" />
+    <Content Include="app\static\app\css\less\bootstrap\button-groups.less" />
+    <Content Include="app\static\app\css\less\bootstrap\buttons.less" />
+    <Content Include="app\static\app\css\less\bootstrap\carousel.less" />
+    <Content Include="app\static\app\css\less\bootstrap\close.less" />
+    <Content Include="app\static\app\css\less\bootstrap\code.less" />
+    <Content Include="app\static\app\css\less\bootstrap\component-animations.less" />
+    <Content Include="app\static\app\css\less\bootstrap\dropdowns.less" />
+    <Content Include="app\static\app\css\less\bootstrap\forms.less" />
+    <Content Include="app\static\app\css\less\bootstrap\glyphicons.less" />
+    <Content Include="app\static\app\css\less\bootstrap\grid.less" />
+    <Content Include="app\static\app\css\less\bootstrap\input-groups.less" />
+    <Content Include="app\static\app\css\less\bootstrap\jumbotron.less" />
+    <Content Include="app\static\app\css\less\bootstrap\labels.less" />
+    <Content Include="app\static\app\css\less\bootstrap\list-group.less" />
+    <Content Include="app\static\app\css\less\bootstrap\media.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\alerts.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\background-variant.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\border-radius.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\buttons.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\center-block.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\clearfix.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\forms.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\gradients.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\grid-framework.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\grid.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\hide-text.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\image.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\labels.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\list-group.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\nav-divider.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\opacity.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\pagination.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\panels.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\progress-bar.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\reset-filter.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\resize.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\size.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\tab-focus.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\table-row.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\text-overflow.less" />
+    <Content Include="app\static\app\css\less\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="app\static\app\css\less\bootstrap\modals.less" />
+    <Content Include="app\static\app\css\less\bootstrap\navbar.less" />
+    <Content Include="app\static\app\css\less\bootstrap\navs.less" />
+    <Content Include="app\static\app\css\less\bootstrap\normalize.less" />
+    <Content Include="app\static\app\css\less\bootstrap\pager.less" />
+    <Content Include="app\static\app\css\less\bootstrap\pagination.less" />
+    <Content Include="app\static\app\css\less\bootstrap\panels.less" />
+    <Content Include="app\static\app\css\less\bootstrap\popovers.less" />
+    <Content Include="app\static\app\css\less\bootstrap\print.less" />
+    <Content Include="app\static\app\css\less\bootstrap\progress-bars.less" />
+    <Content Include="app\static\app\css\less\bootstrap\responsive-embed.less" />
+    <Content Include="app\static\app\css\less\bootstrap\responsive-utilities.less" />
+    <Content Include="app\static\app\css\less\bootstrap\scaffolding.less" />
+    <Content Include="app\static\app\css\less\bootstrap\tables.less" />
+    <Content Include="app\static\app\css\less\bootstrap\theme.less" />
+    <Content Include="app\static\app\css\less\bootstrap\thumbnails.less" />
+    <Content Include="app\static\app\css\less\bootstrap\tooltip.less" />
+    <Content Include="app\static\app\css\less\bootstrap\type.less" />
+    <Content Include="app\static\app\css\less\bootstrap\utilities.less" />
+    <Content Include="app\static\app\css\less\bootstrap\variables.less" />
+    <Content Include="app\static\app\css\less\bootstrap\wells.less" />
+    <Content Include="app\static\app\css\less\breadcrumbs.less" />
+    <Content Include="app\static\app\css\less\bs3-reset.less" />
+    <Content Include="app\static\app\css\less\buttons.less" />
+    <Content Include="app\static\app\css\less\dropdown.less" />
+    <Content Include="app\static\app\css\less\dropdown\colorpicker.less" />
+    <Content Include="app\static\app\css\less\dropdown\navbar-dropdown.less" />
+    <Content Include="app\static\app\css\less\dropdown\navbar-tabbed-dropdown.less" />
+    <Content Include="app\static\app\css\less\ext\bootstrap-tag.less" />
+    <Content Include="app\static\app\css\less\fonts.less" />
+    <Content Include="app\static\app\css\less\footer.less" />
+    <Content Include="app\static\app\css\less\form.less" />
+    <Content Include="app\static\app\css\less\form\checkbox.less" />
+    <Content Include="app\static\app\css\less\form\file.less" />
+    <Content Include="app\static\app\css\less\gallery.less" />
+    <Content Include="app\static\app\css\less\general.less" />
+    <Content Include="app\static\app\css\less\icon-animated.less" />
+    <Content Include="app\static\app\css\less\infobox.less" />
+    <Content Include="app\static\app\css\less\items.less" />
+    <Content Include="app\static\app\css\less\label-badge.less" />
+    <Content Include="app\static\app\css\less\mixins.less" />
+    <Content Include="app\static\app\css\less\modal.less" />
+    <Content Include="app\static\app\css\less\navbar\collapsible.less" />
+    <Content Include="app\static\app\css\less\navbar\navbar-menu-form.less" />
+    <Content Include="app\static\app\css\less\navbar\toggle-button.less" />
+    <Content Include="app\static\app\css\less\navbar\user-buttons-move-down.less" />
+    <Content Include="app\static\app\css\less\navbar\user-buttons.less" />
+    <Content Include="app\static\app\css\less\navbar\user-dropdown-position.less" />
+    <Content Include="app\static\app\css\less\navbar\user-menu.less" />
+    <Content Include="app\static\app\css\less\onpage-help.less" />
+    <Content Include="app\static\app\css\less\other.less" />
+    <Content Include="app\static\app\css\less\page.error.less" />
+    <Content Include="app\static\app\css\less\page.inbox.less" />
+    <Content Include="app\static\app\css\less\page.invoice.less" />
+    <Content Include="app\static\app\css\less\page.login.less" />
+    <Content Include="app\static\app\css\less\page.pricing.less" />
+    <Content Include="app\static\app\css\less\page.profile.less" />
+    <Content Include="app\static\app\css\less\page.timeline.less" />
+    <Content Include="app\static\app\css\less\print.less" />
+    <Content Include="app\static\app\css\less\progressbar.less" />
+    <Content Include="app\static\app\css\less\scroll.less" />
+    <Content Include="app\static\app\css\less\searchbox.less" />
+    <Content Include="app\static\app\css\less\sidebar.less" />
+    <Content Include="app\static\app\css\less\sidebar\active.less" />
+    <Content Include="app\static\app\css\less\sidebar\compact.less" />
+    <Content Include="app\static\app\css\less\sidebar\ff_fix.less" />
+    <Content Include="app\static\app\css\less\sidebar\highlight.less" />
+    <Content Include="app\static\app\css\less\sidebar\horizontal.less" />
+    <Content Include="app\static\app\css\less\sidebar\hover.less" />
+    <Content Include="app\static\app\css\less\sidebar\min.less" />
+    <Content Include="app\static\app\css\less\sidebar\multiple.less" />
+    <Content Include="app\static\app\css\less\sidebar\old-toggle-button.less" />
+    <Content Include="app\static\app\css\less\sidebar\responsive-1.less" />
+    <Content Include="app\static\app\css\less\sidebar\responsive-2.less" />
+    <Content Include="app\static\app\css\less\sidebar\responsive-3.less" />
+    <Content Include="app\static\app\css\less\sidebar\shortcuts-toggle.less" />
+    <Content Include="app\static\app\css\less\sidebar\sidebar-fixed.less" />
+    <Content Include="app\static\app\css\less\sidebar\sub-arrow.less" />
+    <Content Include="app\static\app\css\less\skins\empty.less" />
+    <Content Include="app\static\app\css\less\skins\no-skin.less" />
+    <Content Include="app\static\app\css\less\skins\skin-1.less" />
+    <Content Include="app\static\app\css\less\skins\skin-2.less" />
+    <Content Include="app\static\app\css\less\skins\skin-3.less" />
+    <Content Include="app\static\app\css\less\skins\skins.less" />
+    <Content Include="app\static\app\css\less\tab-accordion.less" />
+    <Content Include="app\static\app\css\less\tables.less" />
+    <Content Include="app\static\app\css\less\thirdparty-calendar.less" />
+    <Content Include="app\static\app\css\less\thirdparty-chosen.less" />
+    <Content Include="app\static\app\css\less\thirdparty-colorbox.less" />
+    <Content Include="app\static\app\css\less\thirdparty-dataTables.less" />
+    <Content Include="app\static\app\css\less\thirdparty-date.less" />
+    <Content Include="app\static\app\css\less\thirdparty-dropzone.less" />
+    <Content Include="app\static\app\css\less\thirdparty-duallist-multiselect.less" />
+    <Content Include="app\static\app\css\less\thirdparty-editable.less" />
+    <Content Include="app\static\app\css\less\thirdparty-fuelux.less" />
+    <Content Include="app\static\app\css\less\thirdparty-gritter.less" />
+    <Content Include="app\static\app\css\less\thirdparty-jqgrid.less" />
+    <Content Include="app\static\app\css\less\thirdparty-jquery-ui.less" />
+    <Content Include="app\static\app\css\less\thirdparty-nestable.less" />
+    <Content Include="app\static\app\css\less\thirdparty-raty.less" />
+    <Content Include="app\static\app\css\less\thirdparty-select2.less" />
+    <Content Include="app\static\app\css\less\thirdparty-slider.less" />
+    <Content Include="app\static\app\css\less\thirdparty-typeahead.less" />
+    <Content Include="app\static\app\css\less\thirdparty-wysiwyg.less" />
+    <Content Include="app\static\app\css\less\tooltip-popover.less" />
+    <Content Include="app\static\app\css\less\utility.less" />
+    <Content Include="app\static\app\css\less\variables.less" />
+    <Content Include="app\static\app\css\less\widget.less" />
+    <Content Include="app\static\app\css\prettify.css" />
+    <Content Include="app\static\app\css\select2-spinner.gif" />
+    <Content Include="app\static\app\css\select2.css" />
+    <Content Include="app\static\app\css\select2.png" />
+    <Content Include="app\static\app\css\select2x2.png" />
+    <Content Include="app\static\app\css\ui.jqgrid.css" />
+    <Content Include="app\static\app\fonts\fontawesome-webfont.eot" />
+    <Content Include="app\static\app\fonts\fontawesome-webfont.svg" />
+    <Content Include="app\static\app\fonts\fontawesome-webfont.ttf" />
+    <Content Include="app\static\app\fonts\fontawesome-webfont.woff" />
+    <Content Include="app\static\app\fonts\FontAwesome.otf" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\static\app\font\cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff" />
+    <Content Include="app\static\app\font\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
+    <Content Include="app\static\app\font\readme" />
+    <Content Include="app\static\app\images\back_disabled.png" />
+    <Content Include="app\static\app\images\back_enabled.png" />
+    <Content Include="app\static\app\images\back_enabled_hover.png" />
+    <Content Include="app\static\app\images\email1.png" />
+    <Content Include="app\static\app\images\email2.png" />
+    <Content Include="app\static\app\images\email3.png" />
+    <Content Include="app\static\app\images\email4.png" />
+    <Content Include="app\static\app\images\forward_disabled.png" />
+    <Content Include="app\static\app\images\forward_enabled.png" />
+    <Content Include="app\static\app\images\forward_enabled_hover.png" />
+    <Content Include="app\static\app\images\gallery\image-1.jpg" />
+    <Content Include="app\static\app\images\gallery\image-2.jpg" />
+    <Content Include="app\static\app\images\gallery\image-3.jpg" />
+    <Content Include="app\static\app\images\gallery\image-4.jpg" />
+    <Content Include="app\static\app\images\gallery\image-5.jpg" />
+    <Content Include="app\static\app\images\gallery\image-6.jpg" />
+    <Content Include="app\static\app\images\gallery\thumb-1.jpg" />
+    <Content Include="app\static\app\images\gallery\thumb-2.jpg" />
+    <Content Include="app\static\app\images\gallery\thumb-3.jpg" />
+    <Content Include="app\static\app\images\gallery\thumb-4.jpg" />
+    <Content Include="app\static\app\images\gallery\thumb-5.jpg" />
+    <Content Include="app\static\app\images\gallery\thumb-6.jpg" />
+    <Content Include="app\static\app\images\sort_asc.png" />
+    <Content Include="app\static\app\images\sort_asc_disabled.png" />
+    <Content Include="app\static\app\images\sort_both.png" />
+    <Content Include="app\static\app\images\sort_desc.png" />
+    <Content Include="app\static\app\images\sort_desc_disabled.png" />
+    <Content Include="app\static\app\images\spritemap%402x.png" />
+    <Content Include="app\static\app\images\spritemap.png" />
+    <Content Include="app\static\app\img\clear.png" />
+    <Content Include="app\static\app\img\glyphicons-halflings-white.png" />
+    <Content Include="app\static\app\img\glyphicons-halflings.png" />
+    <Content Include="app\static\app\js\ace-elements.js" />
+    <Content Include="app\static\app\js\ace-extra.js" />
+    <Content Include="app\static\app\js\ace.js" />
+    <Content Include="app\static\app\js\ace\ace.ajax-content.js" />
+    <Content Include="app\static\app\js\ace\ace.auto-container.js" />
+    <Content Include="app\static\app\js\ace\ace.auto-padding.js" />
+    <Content Include="app\static\app\js\ace\ace.js" />
+    <Content Include="app\static\app\js\ace\ace.onpage-help.js" />
+    <Content Include="app\static\app\js\ace\ace.searchbox-autocomplete.js" />
+    <Content Include="app\static\app\js\ace\ace.settings-rtl.js" />
+    <Content Include="app\static\app\js\ace\ace.settings-skin.js" />
+    <Content Include="app\static\app\js\ace\ace.settings.js" />
+    <Content Include="app\static\app\js\ace\ace.sidebar-scroll-1.js" />
+    <Content Include="app\static\app\js\ace\ace.sidebar-scroll-2.js" />
+    <Content Include="app\static\app\js\ace\ace.sidebar.js" />
+    <Content Include="app\static\app\js\ace\ace.submenu-hover.js" />
+    <Content Include="app\static\app\js\ace\ace.touch-drag.js" />
+    <Content Include="app\static\app\js\ace\ace.widget-box.js" />
+    <Content Include="app\static\app\js\ace\ace.widget-on-reload.js" />
+    <Content Include="app\static\app\js\ace\elements.aside.js" />
+    <Content Include="app\static\app\js\ace\elements.colorpicker.js" />
+    <Content Include="app\static\app\js\ace\elements.fileinput.js" />
+    <Content Include="app\static\app\js\ace\elements.onpage-help.js" />
+    <Content Include="app\static\app\js\ace\elements.scroller.js" />
+    <Content Include="app\static\app\js\ace\elements.spinner.js" />
+    <Content Include="app\static\app\js\ace\elements.treeview.js" />
+    <Content Include="app\static\app\js\ace\elements.typeahead.js" />
+    <Content Include="app\static\app\js\ace\elements.wizard.js" />
+    <Content Include="app\static\app\js\ace\elements.wysiwyg.js" />
+    <Content Include="app\static\app\js\ace\readme" />
+    <Content Include="app\static\app\js\ace\scripts.json" />
+    <Content Include="app\static\app\js\additional-methods.js" />
+    <Content Include="app\static\app\js\bootbox.js" />
+    <Content Include="app\static\app\js\bootstrap-colorpicker.js" />
+    <Content Include="app\static\app\js\bootstrap-multiselect.js" />
+    <Content Include="app\static\app\js\bootstrap-tag.js" />
+    <Content Include="app\static\app\js\bootstrap-wysiwyg.js" />
+    <Content Include="app\static\app\js\bootstrap.js" />
+    <Content Include="app\static\app\js\chosen.jquery.js" />
+    <Content Include="app\static\app\js\date-time\bootstrap-datepicker.js" />
+    <Content Include="app\static\app\js\date-time\bootstrap-datetimepicker.js" />
+    <Content Include="app\static\app\js\date-time\bootstrap-timepicker.js" />
+    <Content Include="app\static\app\js\date-time\daterangepicker.js" />
+    <Content Include="app\static\app\js\date-time\moment.js" />
+    <Content Include="app\static\app\js\dropzone.js" />
+    <Content Include="app\static\app\js\excanvas.js" />
+    <Content Include="app\static\app\js\flot\jquery.flot.js" />
+    <Content Include="app\static\app\js\flot\jquery.flot.pie.js" />
+    <Content Include="app\static\app\js\flot\jquery.flot.resize.js" />
+    <Content Include="app\static\app\js\fuelux\fuelux.spinner.js" />
+    <Content Include="app\static\app\js\fuelux\fuelux.tree.js" />
+    <Content Include="app\static\app\js\fuelux\fuelux.wizard.js" />
+    <Content Include="app\static\app\js\fullcalendar.js" />
+    <Content Include="app\static\app\js\html5shiv.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-ar.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-bg.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-bg1251.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-cat.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-cn.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-cs.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-da.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-de.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-dk.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-el.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-en.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-es.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-fa.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-fi.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-fr.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-gl.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-he.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-hr.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-hr1250.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-hu.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-id.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-is.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-it.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-ja.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-kr.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-lt.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-mne.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-nl.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-no.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-pl.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-pt-br.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-pt.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-ro.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-ru.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-sk.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-sr-latin.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-sr.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-sv.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-th.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-tr.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-tw.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-ua.js" />
+    <Content Include="app\static\app\js\jqGrid\i18n\grid.locale-vi.js" />
+    <Content Include="app\static\app\js\jqGrid\jquery.jqGrid.src.js" />
+    <Content Include="app\static\app\js\jquery-ui.custom.js" />
+    <Content Include="app\static\app\js\jquery-ui.js" />
+    <Content Include="app\static\app\js\jquery.autosize.js" />
+    <Content Include="app\static\app\js\jquery.bootstrap-duallistbox.js" />
+    <Content Include="app\static\app\js\jquery.colorbox.js" />
+    <Content Include="app\static\app\js\jquery.dataTables.bootstrap.js" />
+    <Content Include="app\static\app\js\jquery.dataTables.js" />
+    <Content Include="app\static\app\js\jquery.easypiechart.js" />
+    <Content Include="app\static\app\js\jquery.gritter.js" />
+    <Content Include="app\static\app\js\jquery.hotkeys.js" />
+    <Content Include="app\static\app\js\jquery.inputlimiter.1.3.1.js" />
+    <Content Include="app\static\app\js\jquery.js" />
+    <Content Include="app\static\app\js\jquery.knob.js" />
+    <Content Include="app\static\app\js\jquery.maskedinput.js" />
+    <Content Include="app\static\app\js\jquery.mobile.custom.js" />
+    <Content Include="app\static\app\js\jquery.mousewheel.js" />
+    <Content Include="app\static\app\js\jquery.nestable.js" />
+    <Content Include="app\static\app\js\jquery.raty.js" />
+    <Content Include="app\static\app\js\jquery.slimscroll.js" />
+    <Content Include="app\static\app\js\jquery.sparkline.js" />
+    <Content Include="app\static\app\js\jquery.ui.touch-punch.js" />
+    <Content Include="app\static\app\js\jquery.validate.js" />
+    <Content Include="app\static\app\js\jquery1x.js" />
+    <Content Include="app\static\app\js\markdown\bootstrap-markdown.js" />
+    <Content Include="app\static\app\js\markdown\markdown.js" />
+    <Content Include="app\static\app\js\markdown\to-markdown.js" />
+    <Content Include="app\static\app\js\prettify.js" />
+    <Content Include="app\static\app\js\respond.js" />
+    <Content Include="app\static\app\js\select2.js" />
+    <Content Include="app\static\app\js\spin.js" />
+    <Content Include="app\static\app\js\typeahead.jquery.js" />
+    <Content Include="app\static\app\js\x-editable\ace-editable.js" />
+    <Content Include="app\static\app\js\x-editable\bootstrap-editable.js" />
+    <Content Include="app\templates\Layout.html" />
+    <Content Include="requirements.txt" />
+    <Content Include="db.sqlite3" />
+    <Content Include="app\static\app\_content\bootstrap.css" />
+    <Content Include="app\static\app\_content\bootstrap.min.css" />
+    <Content Include="app\static\app\_content\site.css" />
+    <Content Include="app\static\app\_fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\static\app\_fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\static\app\_fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\static\app\_fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\static\app\_scripts\bootstrap.js" />
+    <Content Include="app\static\app\_scripts\bootstrap.min.js" />
+    <Content Include="app\static\app\_scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="app\static\app\_scripts\jquery-1.10.2.js" />
+    <Content Include="app\static\app\_scripts\jquery-1.10.2.min.js" />
+    <Content Include="app\static\app\_scripts\jquery-1.10.2.min.map" />
+    <Content Include="app\static\app\_scripts\jquery.validate-vsdoc.js" />
+    <Content Include="app\static\app\_scripts\jquery.validate.js" />
+    <Content Include="app\static\app\_scripts\jquery.validate.min.js" />
+    <Content Include="app\static\app\_scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="app\static\app\_scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="app\static\app\_scripts\modernizr-2.6.2.js" />
+    <Content Include="app\static\app\_scripts\respond.js" />
+    <Content Include="app\static\app\_scripts\respond.min.js" />
+    <Content Include="app\static\app\_scripts\_references.js" />
+    <Content Include="app\templates\app\about.html" />
+    <Content Include="app\templates\app\contact.html" />
+    <Content Include="app\templates\app\index.html" />
+    <Content Include="app\templates\app\_layout.html" />
+    <Content Include="app\templates\app\login.html" />
+    <Content Include="app\templates\app\loginpartial.html" />
+    <None Include="VirtAcademy.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.mht">
+      <SubType>WebBrowser</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{30b68be3-1d1f-4759-8090-15612a0b063c}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>3.4</Version>
+      <Description>env (Python 3.4)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,13 @@
+python_2_unicode_compatible
+models
+ContentTypeManager
+unicode_literals
+RemovedInDjango20Warning
+warnings
+ContentType
+OperationalError
+apps
+_
+force_text
+IntegrityError
+ProgrammingError

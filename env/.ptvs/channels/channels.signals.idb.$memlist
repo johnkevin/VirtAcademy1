@@ -1,0 +1,5 @@
+Signal
+consumer_started
+worker_ready
+consumer_finished
+close_old_connections

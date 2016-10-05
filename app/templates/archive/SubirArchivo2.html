@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+    <link rel="stylesheet" type="text/css" href="../../static/app/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/app/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/app/css/ace-fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/app/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"  />
+    <script src="../../static/app/js/ace-extra.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/app/css/jquery-ui.custom.css" />
+    
+    <link rel="stylesheet" type="text/css" href="../../static/app/css/chosen.css" />
+</head>
+<body class="no-skin">
+<div>
+                                            <select class="chosen-select tag-input-style" id="form-field-select-3" data-placeholder="Choose a State..." >
+                                                <option value="">  </option>
+											    <option value="AL">Alabama</option>
+                                            </select>
+                                        </div>
+
+<div class="container body-container" style="width:80%;">
+    <div class="error-container">
+        <div id="user-profile-1" class="user-profile"> 
+            <div class="widget-box transparent">
+			    <div class="widget-header widget-header-small">
+				    <div class="row">
+                	    <div class="col-xs-12">
+						    <h3 class="widget-title smaller">
+							<i class="ace-icon fa fa-book bigger-110"></i>
+							    REGISTRO DE TESIS DE INVESTIGACI&Oacute;N
+						    </h3>
+						</div>
+					</div>
+				</div>
+			</div>
+            <form  action="" method="post" class="form-horizontal" role="form"  enctype="multipart/form-data">  
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <center><h5 class="lighter block green">Seleccionar archivo</h5></center>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+						                <input multiple="" type="file" id="id-input-file-3" />
+						            </div>
+					            </div>
+                            </div>
+                        </div>
+                    </div>
+				    <div class="col-xs-12 col-sm-8">
+                        <h4 class="widget-title smaller" style="color: #4383B4;border-bottom: 1px solid #DCE8F1;">
+                            Informaci&oacute;n General
+					    </h4>	
+                        <fieldset>
+                            <div class="form-group" style="margin-bottom:5px;">
+							    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>T&iacute;tulo:</b></label>
+								<div class="col-sm-9">
+								    <span class="input-icon input-icon-right" style=" width:100%;">
+									    <input data-rel="tooltip" class="form-control" data-val="true"  id="titulotesis" name="titulotesis"  type="text"  placeholder="T&iacute;tulo de Tesis" autocomplete="off">
+								    </span>
+							    </div>
+                            </div>
+					        <div class="form-group" style="margin-bottom:5px;">
+						        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">
+                                <b>Tesista:</b></label>
+							    <div class="col-sm-9">
+                                        <div>
+                                            <select class="chosen-select tag-input-style" id="form-field-select-3" data-placeholder="Choose a State..." >
+                                                <option value="">  </option>
+											    <option value="AL">Alabama</option>
+                                            </select>
+                                        </div>
+							    </div>
+						    </div>
+                        </fieldset>
+		            </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+    {% load staticfiles %}
+    
+    
+    <script src="../../static/app/js/chosen.jquery.js"></script>
+    <script src="../../static/app/js/date-time/bootstrap-datepicker.js"></script>
+
+
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='../../static/app/js/jquery.js'>" + "<" + "/script>");
+    </script>
+    <script type="text/javascript">
+        if('ontouchstart' in document.documentElement) document.write("<script src='../../static/app/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+    </script>
+    <script src="../../static/app/js/bootstrap.js"></script>
+    <script src="../../static/app/js/jquery-ui.custom.js" ></script>
+    <script src="../../static/app/js/jquery.ui.touch-punch.js"></script>
+    <script src="../../static/app/js/jquery.easypiechart.js"></script>
+    <script src="../../static/app/js/jquery.sparkline.js"></script>
+    <script src="../../static/app/js/flot/jquery.flot.js"></script>
+    <script src="../../static/app/js/flot/jquery.flot.pie.js"></script>
+    <script src="../../static/app/js/flot/jquery.flot.resize.js"></script>
+
+    <!-- ace scripts -->
+    <script src="../../static/app/js/ace/elements.scroller.js"></script>
+    <script src="../../static/app/js/ace/elements.colorpicker.js"></script>
+    <script src="../../static/app/js/ace/elements.fileinput.js"></script>
+    <script src="../../static/app/js/ace/elements.typeahead.js"></script>
+    <script src="../../static/app/js/ace/elements.wysiwyg.js"></script>
+    <script src="../../static/app/js/ace/elements.spinner.js"></script>
+    <script src="../../static/app/js/ace/elements.treeview.js"></script>
+    <script src="../../static/app/js/ace/elements.wizard.js"></script>
+    <script src="../../static/app/js/ace/elements.aside.js"></script>
+    <script src="../../static/app/js/ace/ace.js"></script>
+    <script src="../../static/app/js/ace/ace.ajax-content.js"></script>
+    <script src="../../static/app/js/ace/ace.touch-drag.js"></script>
+    <script src="../../static/app/js/ace/ace.sidebar.js"></script>
+    <script src="../../static/app/js/ace/ace.sidebar-scroll-1.js"></script>
+    <script src="../../static/app/js/ace/ace.submenu-hover.js"></script>
+    <script src="../../static/app/js/ace/ace.widget-box.js"></script>
+    <script src="../../static/app/js/ace/ace.settings.js"></script>
+    <script src="../../static/app/js/ace/ace.settings-rtl.js"></script>
+    <script src="../../static/app/js/ace/ace.settings-skin.js"></script>
+    <script src="../../static/app/js/ace/ace.widget-on-reload.js"></script>
+    <script src="../../static/app/js/ace/ace.searchbox-autocomplete.js"></script>
+
+
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('#id-input-file-3').ace_file_input({
+                style: 'well',
+                btn_choose: 'Seleccione o suelte un archivo',
+                btn_change: null,
+                no_icon: 'ace-icon fa fa-cloud-upload',
+                droppable: true,
+                thumbnail: 'medium',
+                allowExt: "pdf",
+            }).on('change', function () {
+            });
+
+                       
+            if (!ace.vars['touch']) {
+                $('.chosen-select').chosen({ allow_single_deselect: true });
+                $('chosen-select').chosen({ max_selected_options: 1 })
+
+                //resize the chosen on window resize
+
+                $(window)
+                .off('resize.chosen')
+                .on('resize.chosen', function () {
+                    $('.chosen-select').each(function () {
+                        var $this = $(this);
+                        $this.next().css({ 'width': $this.parent().width() });
+                    })
+                }).trigger('resize.chosen');
+                //resize chosen on sidebar collapse/expand
+                $(document).on('settings.ace.chosen', function (e, event_name, event_val) {
+                    if (event_name != 'sidebar_collapsed') return;
+                    $('.chosen-select').each(function () {
+                        var $this = $(this);
+                        $this.next().css({ 'width': $this.parent().width() });
+                    })
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+test_items
+__getitem__
+testIEnumerableMapping
+test_values
+test_iter
+test___len__
+testIReadMapping
+BaseTestIEnumerableMapping
+BaseTestIReadMapping
+test_keys

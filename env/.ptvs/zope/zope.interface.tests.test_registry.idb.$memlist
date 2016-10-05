@@ -1,0 +1,9 @@
+_Monkey
+ComponentsTests
+UnhashableComponentsTests
+SubscriptionRegistrationTests
+test_suite
+AdapterRegistrationTests
+UtilityRegistrationTests
+HandlerRegistrationTests
+unittest

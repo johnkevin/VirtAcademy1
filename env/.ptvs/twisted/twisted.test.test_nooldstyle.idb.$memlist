@@ -1,0 +1,17 @@
+namedAny
+_buildTestClasses
+types
+fullyQualifiedName
+getModule
+_skip
+inspect
+absolute_import
+_PY3
+division
+_shouldEnableNewStyle
+SomeNewStyleClass
+OldStyleDecoratorTests
+_oldstyle
+SomeOldStyleClass
+NewStyleOnly
+unittest

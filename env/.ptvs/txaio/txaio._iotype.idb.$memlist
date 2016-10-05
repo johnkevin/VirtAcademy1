@@ -1,0 +1,6 @@
+absolute_import
+unicode
+division
+PY3
+guess_stream_needs_encoding
+PY2

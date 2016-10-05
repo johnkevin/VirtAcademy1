@@ -1,0 +1,483 @@
+{% extends "Layout.html" %}
+{% block css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/jquery-ui.custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap-editable.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/datepicker.css' %}" />
+{% endblock %}
+{% block content %}
+    {% load staticfiles %}                                                     
+        <div class="container body-container" style="width:70%;">
+            <div class="error-container">
+                <div id="user-profile-1" class="user-profile">         
+                	<center>   
+			            <div class="widget-box transparent">
+				            <div class="widget-header widget-header-small">
+				                <div class="row">
+                				    <div class="col-xs-12 col-sm-5">
+									    <h4 class="widget-title smaller">
+									    <i class="ace-icon fa fa-cogs bigger-110"></i>
+									    MODIFICACIÓN DE DATOS
+									    </h4>
+								    </div>
+                                    <div>
+                                    </div>
+								    <div class="col-xs-12 col-sm-7" style="margin-top: 8px;margin-bottom: -8px;">
+								        <div class="progress progress-striped active">
+									        <div class="progress-bar progress-bar-success" style="width:{{context.percent}}%" id="form-field-progress">
+										        <span class="pull-left">Porcentaje de información {{context.percent}}%</span>
+										    </div>
+									    </div>
+								    </div>
+								</div>
+							</div>
+						</div>       
+					</center>
+					<br />
+	                <div class="tabbable">
+	                    <ul class="nav nav-tabs padding-18">
+		                    <li class="active">
+			                    <a data-toggle="tab" href="#InfoBasic" aria-expanded="true">
+                                    <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+                                    Informaci&oacute;n B&aacute;sica
+                                </a>
+			                </li>
+			                <li class="">
+			                    <a data-toggle="tab" href="#password" aria-expanded="false">
+			                        <i class="blue ace-icon fa fa-key bigger-125"></i>
+					                Cambiar Contrase&ntilde;a
+				                </a>
+			                </li>
+		                </ul>
+                        <div class="tab-content no-border padding-18" style="border:1px solid #DDD">
+		                    <div id="InfoBasic" class="tab-pane active">
+                                <div class="user-profile visible widget-box no-border" style="margin-top:-20px;">
+					                <div class="widget-main">
+					                	<form name="frmCambiarPerfilData" action="/CambiarPerfilData/" method="post" class="form-horizontal" role="form" style="margin-top:-20px;">
+                                            {% csrf_token %}
+						                	<h4 class="header blue bolder smaller">General</h4>
+						                	<div class="row">
+						                		<div class="col-xs-12 col-sm-3">
+			                                        <span class="profile-picture">
+			                                            {% if context.valor %}
+			                                                 {% if context.userAppProfile.photo %}
+			                                                    <img id="avatar" class="editable img-responsive editable-click editable-empty" src="/media/{{context.userAppProfile.photo}}">
+			                                                 {% else %}
+			                                                    {% if context.userAppProfile.sexo == "M" %}
+			                                                        <img id="avatar" class="editable img-responsive editable-click editable-empty" src="{% static 'app/avatars/profile-pic.jpg' %}">    
+			                                                    {% else %}
+			                                                        <img id="avatar" class="editable img-responsive editable-click editable-empty" src="{% static 'app/avatars/profile-pic.jpg' %}">    
+			                                                    {% endif %}
+			                                                 {% endif %}
+			                                            {% else %}
+			                                                <img id="avatar" class="editable img-responsive editable-click editable-empty" src="{% static 'app/avatars/profile-pic.jpg' %}">    
+			                                            {%endif %}
+			                                        </span>
+		                                        </div>
+		                                        <div class="vspace-12-sm"></div>
+		                                        <div class="col-xs-12 col-sm-9">
+		                                        	<fieldset>
+									                    <div class="form-group" style="margin-bottom:5px;">
+									                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>Nombre(s):</b></label>
+									                        <div class="col-sm-9">
+									                            <span class="input-icon input-icon-right" style=" width:90%;">
+															        <input data-rel="tooltip" class="form-control" data-val="true"  id="username" 
+									                                maxlength="10" name="username"  type="text" value="{{user.first_name}}" placeholder="Nombre(s)">
+									                            </span>
+									                        </div>
+													    </div>
+													    <div class="form-group" style="margin-bottom:5px;">
+													    	<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>Apellido Paterno:</b></label>
+									                        <div class="col-sm-7">
+									                            <span class="input-icon input-icon-right" style=" width:90%;">
+															        <input data-rel="tooltip" class="form-control" data-val="true"  id="ApePat" 
+									                                maxlength="10" name="ApePat"  type="text"
+                                                                    value="{% if context.valor %}{% if context.userAppProfile.ApePat %}{{ context.userAppProfile.ApePat}}{% endif %}{% endif %}" 
+                                                                    placeholder="Apellido Paterno">
+									                            </span>
+									                        </div>
+													    </div>
+													    <div class="form-group" style="margin-bottom:5px;">
+													    	<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>Apellido Materno:</b></label>
+									                        <div class="col-sm-7">
+									                            <span class="input-icon input-icon-right" style=" width:90%;">
+															        <input data-rel="tooltip" class="form-control" data-val="true"  id="ApeMat" 
+									                                maxlength="10" name="ApeMat"  type="text" 
+                                                                    value="{% if context.valor %}{% if context.userAppProfile.ApeMat %}{{ context.userAppProfile.ApeMat}}{% endif %}{% endif %}" 
+                                                                    placeholder="Apellido Materno">
+									                            </span>
+									                        </div>
+													    </div>
+													    <div class="form-group" style="margin-bottom:5px;">
+									                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>Dirección:</b></label>
+									                        <div class="col-sm-9">
+									                            <span class="input-icon input-icon-right" style=" width:90%;">
+															        <input data-rel="tooltip" class="form-control" data-val="true"  id="direction" 
+									                                name="direction" maxlength="100" type="text" 
+                                                                    value="{% if context.valor %}{% if context.userAppProfile.direccion %}{{ context.userAppProfile.direccion}}{% endif %}{% endif %}" placeholder="Dirección">
+									                            </span>
+									                        </div>
+													    </div>
+													    <div class="form-group" style="margin-bottom:5px;">
+											                <label class="col-sm-3 control-label no-padding-right" for="form-field-date"><b>Fecha Nacimiento:</b></label>
+											                <div class="col-sm-9">
+											                    <div class="input-medium">
+																    <div class="input-group">
+																	    <input class="input-medium date-picker" id="form-field-date" name="form-field-date" type="text" data-date-format="dd-mm-yyyy" placeholder="DD-MM-YYYY"
+                                                                        value="{% if context.valor %}{% if context.userAppProfile.fecha_nacimiento %}{{ context.userAppProfile.fecha_nacimiento| date:"d-m-Y" }}{% endif %}{% endif %}">
+																		<span class="input-group-addon">
+																		    <i class="ace-icon fa fa-calendar"></i>
+																	    </span>
+																	</div>
+																</div>
+											                </div>
+													    </div>
+                                                        <div class="form-group" style="margin-bottom:5px;">
+									                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>G&eacute;nero:</b></label>
+									                        <div class="col-sm-9" style="padding-top:8px!important;">
+                                                            {% if context.valor %}
+			                                                    {% ifequal context.userAppProfile.sexo 'M' %}
+			                                                        <label><input name="form-field-radio" type="radio" class="ace" value="M" checked ><span class="lbl">Masculino</span></label>
+                                                                    &nbsp;&nbsp;
+                                                                    <label><input name="form-field-radio" type="radio" class="ace" value="F" /><span class="lbl">Femenino</span></label>
+			                                                    {% else %}
+                                                                    <label><input name="form-field-radio" type="radio" class="ace" value="M" ><span class="lbl">Masculino</span></label>
+                                                                    &nbsp;&nbsp;
+                                                                    <label><input name="form-field-radio" type="radio" class="ace" value="F" checked/><span class="lbl">Femenino</span></label>
+			                                                    {% endifequal %}
+                                                            {% else %}
+                                                                <label><input name="form-field-radio" type="radio" class="ace" value="M" ><span class="lbl">Masculino</span></label>
+                                                                    &nbsp;&nbsp;
+                                                                <label><input name="form-field-radio" type="radio" class="ace" value="F" /><span class="lbl">Femenino</span></label>
+			                                                {%endif %}
+									                                
+									                        </div>
+													    </div>
+													</fieldset>
+		                                        </div>
+		                                    </div>
+		                                    <div class="row">
+		                                    	<h4 class="header blue bolder smaller">Extracto Profesional y Académico</h4>
+						                		<div class="col-xs-12 col-sm-6">
+						                			<div class="form-group" style="margin-bottom:5px;">
+								                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b> Facultad:</b> </label>
+								                        <div class="col-sm-9">
+								                            <span class="input-icon input-icon-right" style=" width:100%;">
+														        <select name="facultad" id="facultad" style="width:100%;" >
+								                                {% for facultades in context.facultad %}
+                                                                    {% ifequal facultades.id context.IdFacultad %}
+													                    <option value="{{ facultades.id }}" selected>{{ facultades.Desc_Facultad }}</option>
+                                                                    {% else %}
+                                                                        <option value="{{ facultades.id }}" >{{ facultades.Desc_Facultad }}</option>
+                                                                    {% endifequal %}
+								                                {% endfor %}
+													            </select>
+								                            </span>
+														    
+								                        </div>
+												    </div>
+												    <div class="form-group" style="margin-bottom:5px;">
+								                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b> Escuela:</b> </label>
+								                        <div class="col-sm-9">
+								                            <span class="input-icon input-icon-right" style=" width:100%;">
+														        <select name="escuela" id="escuela" style="width:100%;" >
+								                                {% for escuela in context.escuela %}
+                                                                    {% ifequal escuela.id context.IdEscuela%}
+													                    <option value="{{ escuela.id }}" selected>{{ escuela.Desc_Escuela }}</option>
+                                                                    {% else %}
+                                                                        <option value="{{ escuela.id }}">{{ escuela.Desc_Escuela }}</option>
+                                                                    {% endifequal %}
+								                                {% endfor %}
+													            </select>
+								                            </span>
+								                        </div>
+												    </div>
+												    <div class="form-group" style="margin-bottom:5px;">
+								                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b> Condici&oacute;n:</b> </label>
+								                        <div class="col-sm-9">
+								                            <span class="input-icon input-icon-right" style=" width:100%;">
+														        <select name="condicion" id="condicion" style="width:100%;" >
+								                                {% for condicion in context.condicion %}
+                                                                    {% ifequal condicion.id context.IdCondicion %}
+													                    <option value="{{ condicion.id }}" selected>{{ condicion.Desc_Condicion }}</option>
+                                                                    {% else %}
+                                                                        <option value="{{ condicion.id }}">{{ condicion.Desc_Condicion }}</option>
+                                                                    {% endifequal %}
+								                                {% endfor %}
+													            </select>
+								                            </span>
+								                        </div>
+												    </div>
+						                		</div>
+						                		<div class="col-xs-12 col-sm-6">
+						                			<textarea class="form-control" id="Extracto" name="Extracto" placeholder="Escribe tu Extracto Profesional" style="height:150px; width:100%;max-width:100%">{% if context.valor %}{% if context.userAppProfile.resumen %}{{ context.userAppProfile.resumen }}{% endif %}{% endif %}</textarea>
+						                		</div>
+						                	</div>
+                                            <div class="clearfix form-actions" style="margin-bottom:-5%; padding:10px 20px 10px!important;">
+												<div class="col-md-offset-3 col-md-9">
+													<button class="btn" type="reset" id="form-option-reset"><i class="ace-icon fa fa-undo bigger-110"></i>Cancelar</button>
+                                                    &nbsp; &nbsp;&nbsp;
+                                                    <button class="btn btn-primary" id="form-option-changeData" ><i class="ace-icon fa fa-check bigger-110"></i>Modificar</button>
+											    </div>
+										    </div>
+                                            <div class="form-group" style="margin-bottom:5%!important;margin-top:6%!important;" id="msj1"></div>
+		                                </form>                                        
+					                </div><!-- /.widget-main -->
+                                </div>
+			                </div><!-- /#home -->
+			                <div id="password" class="tab-pane">
+                                <div class="widget-main">
+                                    <form name="fmrCambiarContrasenia"  action="/ajax/CambiarContrasenia/" method="post" class="form-horizontal" role="form" style="margin-top:-20px;" >
+                                        {% csrf_token %}
+                                        <div class="row">
+						                    <div class="col-xs-12 col-sm-2"></div>
+		                                    <div class="col-xs-12 col-sm-8">
+		                                        <fieldset>
+									                <div class="form-group" style="margin-bottom:5px;">
+									                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"><b>Contrase&ntilde;a Actual</b></label>
+									                    <div class="col-sm-8">
+															    <input class="form-control" data-val="true" minlength="5" name="ContActual"  type="password" placeholder="Contraseña Actual">
+									                    </div>
+													</div>
+													<div class="form-group" style="margin-bottom:5px;">
+									                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"><b>Contrase&ntilde;a Nueva</b></label>
+									                    <div class="col-sm-8">
+														    <input class="form-control" data-val="true" minlength="5" name="ContNueva"  type="password" placeholder="Contraseña Nueva">
+									                    </div>
+													</div>
+                                                    <div class="form-group" style="margin-bottom:5px;">
+									                    <label class="col-sm-4 control-label no-padding-right" for="form-field-1"><b>Confirmar Contrase&ntilde;a</b></label>
+									                    <div class="col-sm-8">
+															    <input  class="form-control" data-val="true"  id="ConfCont" name="ConfCont"  type="password" placeholder="Confirmar Contraseña">
+									                    </div>
+													</div>
+                                                    <div class="clearfix form-actions" style="margin-bottom:-5%; padding:10px 20px 10px!important;">
+													    <div class="col-md-offset-3 col-md-9">
+														    <button class="btn" type="reset"><i class="ace-icon fa fa-undo bigger-110"></i>Cancelar</button>
+                                                            &nbsp; &nbsp;&nbsp;
+                                                            <button class="btn btn-primary" ><i class="ace-icon fa fa-check bigger-110"></i>Modificar</button>
+													    </div>
+												    </div>
+                                                    <div class="form-group" style="margin-bottom:5%!important;margin-top:6%!important;" id="mensaje"></div>
+												</fieldset>
+		                                    </div>
+                                            <div class="col-xs-12 col-sm-2"></div>
+		                                </div>
+                                    </form>
+                                </div>
+			                </div><!-- /#password -->
+		                </div>
+	                </div>
+                </div>  
+            </div>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    {% load staticfiles %}
+    <script src="{% static 'app/js/x-editable/bootstrap-editable.js' %}"></script>
+    <script src="{% static 'app/js/x-editable/ace-editable.js' %}"></script>
+    <script src="{% static 'app/js/jquery.form.js' %}"></script>
+    <script src="{% static 'app/js/date-time/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'app/js/DjangoAjax.js' %}"></script>
+    <script type="text/javascript">
+			jQuery(function($) {
+			
+				//editables on first profile page
+				$.fn.editable.defaults.mode = 'inline';
+				$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
+			    $.fn.editableform.buttons = '<button type="submit" class="btn btn-info editable-submit"><i class="ace-icon fa fa-check"></i></button>'+
+			                                '<button type="button" class="btn editable-cancel"><i class="ace-icon fa fa-times"></i></button>';    
+				
+				try {
+					try {
+						document.createElement('IMG').appendChild(document.createElement('B'));
+					} catch(e) {
+						Image.prototype.appendChild = function(el){}
+					}
+			
+					var last_gritter
+					$('#avatar').editable({
+						type: 'image',
+						name: 'avatar',
+						value: null,
+						image: {
+							//specify ace file input plugin's options here
+							btn_choose: 'Cambiar Imagen',
+							droppable: true,
+							maxSize: 110000,//~100Kb
+							//and a few extra ones here
+							name: 'avatar',//put the field name here as well, will be used inside the custom plugin
+							on_error : function(error_type) {//on_error function will be called when the selected file has a problem
+								if(last_gritter) $.gritter.remove(last_gritter);
+								if(error_type == 1) {//file format error
+									last_gritter = $.gritter.add({
+										title: 'Archivo no es una Imagen!',
+										text: 'Porfavor seleccione un jpg|gif|png image!',
+										class_name: 'gritter-error gritter-center'
+									});
+								} else if(error_type == 2) {//file size rror
+									last_gritter = $.gritter.add({
+										title: 'Archivo demasiado grande!',
+										text: 'Tamaño de Imagen no debe exceder los 100Kb!',
+										class_name: 'gritter-error gritter-center'
+									});
+								}
+								else {//other error
+								}
+							},
+							on_success: function () {
+								$.gritter.removeAll();
+							}
+						},
+					    url:function(params) {
+							var deferred = new $.Deferred
+							var submit_url = 'uploadImage';
+							var avatar = '#avatar';
+
+							var value = $('#avatar').next().find('input[type=hidden]:eq(0)').val();
+
+							if(!value || value.length == 0) {
+								deferred.resolve();
+								return deferred.promise();
+							}
+
+							var $form = $(avatar).next().find('.editableform:eq(0)')
+							var file_input = $form.find('input[type=file]:eq(0)');
+							var pk = $(avatar).attr('data-pk');//primary key to be sent to server
+							var ie_timeout = null
+
+							if ("FormData" in window) {
+							    var formData_object = new FormData();
+							    $.each($form.serializeArray(), function (i, item) {
+							        formData_object.append(item.name, item.value);
+							    });
+							    $form.find('input[type=file]').each(function () {
+							        var field_name = $(this).attr('name');
+
+							        var files = $(this).data('ace_input_files');
+							        if (files && files.length > 0) {
+							            formData_object.append(field_name, files[0]);
+							        }
+							    });
+							    formData_object.append('pk', pk);							    
+
+							    deferred = $.ajax({
+							        url: submit_url,
+							        type: 'POST',
+							        processData: false,//important
+							        contentType: false,//important
+							        dataType: 'json',//server response type
+							        data: formData_object
+							    })
+							}
+							else {
+							    deferred = new $.Deferred
+							    var temporary_iframe_id = 'temporary-iframe-' + (new Date()).getTime() + '-' + (parseInt(Math.random() * 1000));
+							    var temp_iframe =
+                                        $('<iframe id="' + temporary_iframe_id + '" name="' + temporary_iframe_id + '" \
+									frameborder="0" width="0" height="0" src="about:blank"\
+									style="position:absolute; z-index:-1; visibility: hidden;"></iframe>')
+                                        .insertAfter($form);
+
+							    $form.append('<input type="hidden" name="temporary-iframe-id" value="' + temporary_iframe_id + '" />');
+							    $('<input type="hidden" name="pk" />').val(pk).appendTo($form);
+							    temp_iframe.data('deferrer', deferred);
+							    console.log(temp_iframe);
+							    $form.attr({
+							        action: submit_url,
+							        method: 'POST',
+							        enctype: 'multipart/form-data',
+							        target: temporary_iframe_id 
+							    });
+							    $form.get(0).submit();
+							    ie_timeout = setTimeout(function () {
+							        ie_timeout = null;
+							        temp_iframe.attr('src', 'about:blank').remove();
+							        deferred.reject({ 'status': 'fail', 'message': 'Timeout!' });
+							    }, 30000);
+							}					        
+							deferred.done(function (result) {
+                                var res = result[0];
+                                if (res.status == 'OK') $(avatar).get(0).src =res.url;
+                                else alert(res.message);
+                            })
+                            .fail(function (result) {alert("There was an error");})
+                            .always(function () {
+                                if (ie_timeout) clearTimeout(ie_timeout)
+                                ie_timeout = null;
+                            });
+							return deferred.promise();
+					    },
+						
+					    success: function (response, newValue) {
+					        
+					        console.log(response);
+					        console.log(newValue);
+						}
+					})
+				}catch(e) {}
+				$('#user-profile-1').find('.date-picker').datepicker().next().on(ace.click_event, function () { $(this).prev().focus(); });
+				$("form[name=frmPerfil]").submit(function () { return false; });
+			});
+
+
+			$('#facultad').on('change', busquedaEscuelas);
+			function busquedaEscuelas() {
+			    var facultad = $('#facultad').val();
+			    $('#escuela').empty();
+			    $.ajax({
+			        data: { 'facultad': facultad },
+			        url: '/buscarEscuelas',
+			        type: 'get',
+			        beforeSend: function () {
+			            $("#escuela").append('<option value="tmp" selected="selected">Cargando...</option>');
+			            $("#escuela").attr('disabled', true);
+			        },
+			        success: function (data) {
+			            $("#escuela").attr('disabled', false);
+			            $("#escuela").html("");
+			            $.each(data, function (i, item) {
+			                $("#escuela").append("<option value=\""+item.pk + "\">" + item.fields.Desc_Escuela + "</option>");
+			            });
+			        }
+			    });
+			}
+            
+			$("form[name=fmrCambiarContrasenia]").ajaxForm({
+			    success: function (data) {
+			        $("#mensaje").html("");
+			        var html = "";
+			        html += '<div class="alert alert-danger"><button class="close" data-dismiss="alert">'
+			        html += '<i class="ace-icon fa fa-times"></i></button>'
+			        html += data
+			        html += '</div>'
+			        $('#mensaje').append(html);
+			    }
+			});
+
+			$("form[name=frmCambiarPerfilData]").ajaxForm({
+			    beforeSend: function (event) {
+			        $("#form-option-changeData").attr('disabled', true);
+			        
+			    },
+			    success: function (data) {
+			        var askdfedr = data.valor;
+			        var cmdandscriptanex = askdfedr ? 'alert-info' : 'alert-danger';
+			        var _html = "";
+			        $("#msj1").html(_html);
+			        _html += '<div class="alert ' + cmdandscriptanex + '"><button class="close" data-dismiss="alert">';
+			        _html += '<i class="ace-icon fa fa-times"></i></button>';
+			        _html += data.msj + '</div>';
+			        $('#msj1').append(_html);
+			        if (askdfedr) {
+			            $('#form-field-progress').text('Porcentaje de información '+ data.percent+"%");
+			            $('#form-field-progress').attr("aria-valuenow", data.percent);
+			            $('#form-field-progress').css("width", data.percent + "%");
+			        }
+			        $("#form-option-changeData").attr('disabled', false);
+			    }
+			});
+            
+		</script>
+{% endblock %}   

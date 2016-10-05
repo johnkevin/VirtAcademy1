@@ -1,0 +1,12 @@
+PY2
+text_type
+binary_type
+django
+lru_cache
+DefaultSimpleLazyObject
+memoize
+integer_types
+string_types
+SimpleLazyObject
+basestring
+sys

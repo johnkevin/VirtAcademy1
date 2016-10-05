@@ -1,0 +1,11 @@
+IExtendedReadMapping
+IIterableMapping
+IMapping
+IExtendedWriteMapping
+IWriteMapping
+IReadMapping
+IClonableMapping
+IEnumerableMapping
+Interface
+IFullMapping
+IItemMapping

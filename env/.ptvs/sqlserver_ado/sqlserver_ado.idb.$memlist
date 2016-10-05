@@ -1,0 +1,15 @@
+operations
+patches
+ado_consts
+absolute_import
+unicode_literals
+sql_app
+schema
+creation
+introspection
+dbapi
+models
+compiler
+fields
+base
+__version__

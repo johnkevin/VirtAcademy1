@@ -1,0 +1,173 @@
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3 center">
+					                        <div>
+						                        <span class="profile-picture">
+                                                    {% if context.valor %}
+                                                        {% load staticfiles %} 
+                                                        {% if context.userAppProfile_user.photo %}
+                                                            <img id="avatarprofile" class="editable img-responsive editable-click editable-empty" src="/media/{{context.userAppProfile_user.photo}}">
+                                                        {% else %}
+                                                            {% if context.userAppProfile_user.sexo == "M" %}
+                                                            <img id="avatarprofile" class="editable img-responsive editable-click editable-empty" src="{% static 'app/avatars/profile-pic.jpg' %}">    
+                                                            {% else %}
+                                                             <img id="avatarprofile" class="editable img-responsive editable-click editable-empty" src="{% static 'app/avatars/profile-pic.jpg' %}">    
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <img id="avatar" class="editable img-responsive editable-click editable-empty" src="{% static 'app/avatars/profile-pic.jpg' %}">    
+                                                    {%endif %}
+							                    </span>
+						                        <!-- /section:pages/profile.picture -->
+						                        <div class="space-4"></div>
+                                                
+						                            <div class="width-100 label label-info label-xlg arrowed-in arrowed-in-right">
+						                                <div class="inline position-relative">
+							                                <a href="" class="user-title-label dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="estadoUser">
+                                                             {% ifequal context.userAppProfile_user.estado 1 %}
+								                                <i class="ace-icon fa fa-circle light-green" id="focusestado" name="focusestado"></i>&nbsp;
+                                                                <span class="white" id="nameestado" name="nameestado">Disponible</span>
+                                                             {% else %}
+                                                                {% ifequal context.userAppProfile_user.estado 2 %}
+                                                                <i class="ace-icon fa fa-circle light-red" id="focusestado" name="focusestado"></i>&nbsp;
+                                                                <span class="white" id="nameestado" name="nameestado">Ocupado</span>
+                                                                {% else %}
+                                                                <i class="ace-icon fa fa-circle light-grey" id="focusestado" name="focusestado"></i>&nbsp;
+                                                                <span class="white" id="nameestado" name="nameestado">Invisible</span>
+                                                                {% endifequal %}
+                                                            {% endifequal %}
+								                            </a>
+                                                            {% ifequal context.userAppProfile_user.user_id user.id %}
+								                                <ul class="align-left dropdown-menu dropdown-caret dropdown-lighter" name="ChangeState" id="ChangeStates">
+								                                    <li class="dropdown-header"> Cambiar estado </li>
+									                                <li value="1"><a  ><i class="ace-icon fa fa-circle green"></i>&nbsp;<span class="estado">Disponible</span></a></li>
+                                                                    <li value="2"><a ><i class="ace-icon fa fa-circle red"></i>&nbsp;<span class="estado">Ocupado</span></a></li>
+                                                                    <li value="3"><a ><i class="ace-icon fa fa-circle grey"></i>&nbsp;<span class="estado">Invisible</span></a></li>
+								                                </ul>
+                                                            {% endifequal %}
+                                                        </div>    
+                                                    </div>                                                    
+                                                <div class="space-4"></div>
+                                                {% ifequal context.userAppProfile_user.user_id user.id%}
+                                                <div class="toolbar clearfix">
+						                            <div>
+					                                    <a href="/ChangeProfile" class="btn btn-info btn-block btn-white btn-round btn-bold" style="font-size:83%!important;">
+									                        <i class="ace-icon fa fa-pencil bigger-110 orange2"></i><span class="bigger-90">Modificar mis datos</span>
+								                        </a>						
+                                                    </div>
+                                                </div>
+                                                {% endifequal%}
+					                        </div>
+						                    <div class="space-6"></div>
+						                    <!-- #section:pages/profile.contact -->
+						                    <div class="profile-contact-info">
+						                        <div class="profile-contact-links align-left">
+                                                    <div class="inline position-relative">
+							                            <a href="#" class="btn btn-link">
+								                            <i class="ace-icon fa fa-plus-circle bigger-120 green"></i>
+								                            Add as a friend
+								                        </a>
+								                        <a href="#" class="btn btn-link">
+								                            <i class="ace-icon fa fa-envelope bigger-120 pink"></i>
+								                            Send a message
+								                        </a>
+								                        <a href="#" class="btn btn-link">
+								                            <i class="ace-icon fa fa-globe bigger-125 blue"></i>
+								                            www.alexdoe.com
+									                    </a>
+								                    </div>
+                                                </div>
+							                    <div class="space-6"></div>
+							                        <div class="profile-social-links align-center">
+							                            <a href="#" class="tooltip-info" title="" data-original-title="Visit my Facebook">
+								                            <i class="middle ace-icon fa fa-facebook-square fa-2x blue"></i>
+								                        </a>
+								                        <a href="#" class="tooltip-info" title="" data-original-title="Visit my Twitter">
+								                            <i class="middle ace-icon fa fa-twitter-square fa-2x light-blue"></i>
+								                        </a>
+								                        <a href="#" class="tooltip-error" title="" data-original-title="Visit my Pinterest">
+								                            <i class="middle ace-icon fa fa-pinterest-square fa-2x red"></i>
+								                        </a>
+							                        </div>
+						                        </div>
+					                        </div>
+					                        <div class="col-xs-12 col-sm-9">
+                                                <h4 class="widget-title smaller" style="color: #4383B4;border-bottom: 1px solid #DCE8F1;">
+								                    <i class="ace-icon fa fa-graduation-cap  bigger-110"></i>
+                                                    {{context.userAppProfile_user.Nombres|upper}} {{context.userAppProfile_user.ApePat|upper}} {{context.userAppProfile_user.ApeMat|upper}}
+							                    </h4>
+                                                <div class="infobox-container">
+                                                    <div class="infobox infobox-orange2">
+                                                        <div class="infobox-icon"><i class="ace-icon fa fa-lightbulb-o"></i></div>
+                                                        <div class="infobox-data">
+                                                            <span class="infobox-data-number">2</span><div class="infobox-content">Mis Proyectos</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="infobox infobox-red">
+                                                        <div class="infobox-icon"><i class="ace-icon fa fa-eye"></i></div>
+                                                        <div class="infobox-data">
+                                                            <span class="infobox-data-number">2</span><div class="infobox-content">Proyectos visualizados</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="infobox infobox-green">
+                                                        <div class="infobox-icon"><i class="ace-icon fa fa-book"></i></div>
+                                                        <div class="infobox-data">
+                                                            <span class="infobox-data-number">2</span><div class="infobox-content">Proyectos Asesorados</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="infobox infobox-blue2">
+                                                        <div class="infobox-icon"><i class="ace-icon fa fa-user"></i></div>
+                                                        <div class="infobox-data">
+                                                            <span class="infobox-data-number">2</span><div class="infobox-content">Siguiendo</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="infobox infobox-pink">
+                                                        <div class="infobox-icon"><i class="ace-icon fa fa-group"></i></div>
+                                                        <div class="infobox-data">
+                                                            <span class="infobox-data-number">2</span><div class="infobox-content">Seguidores</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+						                        <div class="space-4"></div>
+						                        <!-- #section:pages/profile.info -->
+						                        <div class="profile-user-info profile-user-info-striped">
+							                        <div class="profile-info-row">
+							                            <div class="profile-info-name"> Direcci&oacute;n </div>
+								                        <div class="profile-info-value">{% if context.valor %}{% if context.userAppProfile_user.direccion %}
+                                                            <i class="fa fa-map-marker light-orange bigger-110"></i>
+									                        <span class="editable editable-click" id="country">{{ context.userAppProfile_user.direccion }}</span>{% endif %}{%endif %}
+								                        </div>
+							                        </div>
+                                                    <div class="profile-info-row">
+							                            <div class="profile-info-name"> Fecha Nac. </div>
+                                                        <div class="profile-info-value">{% if context.valor %}{% if context.userAppProfile_user.fecha_nacimiento %}
+                                                            <span class="editable editable-click" id="signup">{{ context.userAppProfile_user.fecha_nacimiento| date:"d-m-Y"}}</span>{% endif %}{%endif %}
+								                        </div>
+							                        </div>
+							                        <div class="profile-info-row">
+							                            <div class="profile-info-name"> Facultad </div>
+								                        <div class="profile-info-value">{% if context.valor %}{% if context.userAppProfile_user.facultad%}
+                                                            <span class="editable editable-click" id="login">{{ context.userAppProfile_user.facultad|upper }}</span>{% endif %}{%endif %}
+								                        </div>
+							                        </div>
+							                        <div class="profile-info-row">
+							                            <div class="profile-info-name"> Escuela </div>
+                                                        <div class="profile-info-value">{% if context.valor %}{% if context.userAppProfile_user.escuela %}
+                                                            <span class="editable editable-click" id="about">{{ context.userAppProfile_user.escuela|upper }}</span>{% endif %}{%endif %}
+								                        </div>
+							                        </div>
+                                                    <div class="profile-info-row">
+							                            <div class="profile-info-name"> Condici&oacute;n </div>
+								                        <div class="profile-info-value">{% if context.valor %}{% if context.userAppProfile_user.condicion %}
+                                                            <span class="editable editable-click" id="about">{{ context.userAppProfile_user.condicion|upper }}</span>{% endif %}{%endif %}
+								                        </div>
+							                        </div>
+						                        </div>
+						                        <!-- /section:pages/profile.info -->
+						                        <div class="space-10"></div>		
+                                                <h4 class="widget-title smaller" style="color: #4383B4;border-bottom: 1px solid #DCE8F1;">
+								                    <i class="ace-icon fa fa-briefcase  bigger-110"></i>Extracto Profesional y Acad&eacute;mico
+							                    </h4>		
+                                                <p>{% if context.valor %}{% if context.userAppProfile_user.resumen %}{{ context.userAppProfile_user.resumen}}{% endif %}{%endif %}</p>	
+					                        </div>
+</div>

@@ -1,0 +1,13 @@
+SimpleTemplateResponse
+Context
+six
+BackendTemplate
+loader
+warnings
+ContentNotRenderedError
+RequestContext
+Template
+TemplateResponse
+HttpResponse
+RemovedInDjango20Warning
+_current_app_undefined

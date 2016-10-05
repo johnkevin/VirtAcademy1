@@ -1,0 +1,8 @@
+codecs
+copy
+six
+Decimal
+_sqlite3
+Apps
+DatabaseSchemaEditor
+BaseDatabaseSchemaEditor

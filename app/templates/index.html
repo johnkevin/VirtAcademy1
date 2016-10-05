@@ -1,0 +1,165 @@
+{% extends "Layout.html" %}
+
+{% block content %}
+<div class="jumboSearch">
+    <div class="row">
+        <div class="col-xs-1">
+		</div>
+		<div class="col-xs-10">
+            <div  style="background-color: transparent!important;">
+                <h2 class="header smaller lighter blue"><strong>Bienvenido(a)</strong></h2>
+                <h3>
+                    <p class="lead text-center">
+                        El Repositorio Institucional de la Facultad de Ingenier&iacute;a Industrial <strong>VirtAcademy</strong>
+                    es una herramienta virtual que tiene por objeto almacenar, conservar, preservar y difundir la creaci&oacute;n 
+                    cient&iacute;fico-intelectual de los miembros de la Facultad
+                    </p>
+                </h3>
+                <div>
+                    <form class="form-search" action="/" method="get">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3">
+                            </div>
+						    <div class="col-xs-12 col-sm-6">
+						    <div class="input-group">
+						        <input type="text" class="form-control search-query" placeholder="Escriba un tema para su b&uacute;squeda" style="border-radius:5px 0px 0px 5px!important;">
+							    <span class="input-group-btn">
+							        <button type="submit" class="btn btn-info btn-sm" style="border-radius:0px 5px 5px 0px!important; margin-top:-6px;">
+								        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+								        Buscar
+								    </button>
+						        </span>
+						    </div>
+					    </div>
+                        <div class="col-xs-12 col-sm-3">
+                        </div>
+					    </div>
+				    </form>
+                </div>
+            </div>
+		</div>
+        <div class="col-xs-1">
+		</div>
+	</div>
+    <div class="space-4"></div>
+</div>
+{% load staticfiles %}                                                     
+<div class="main-container" >
+    <div class="error-container">
+        <div class="row">{% for dt in context.tesis %}
+            <div class="col-xs-6 col-sm-4">
+                <div class="blockTesis">
+                    <div class="category">
+                        <span class="label label-info arrowed-right">Optar grado: {{dt.grado__Desc_Grado}}</span>
+                            <span class="label label-success arrowed-in-right arrowed-in">{{dt.FechaAceptacion|date:"Y"}}</span>
+                        </div>
+                        <div id="caja2">
+                            <a href="{% url 'tesispublicacion' dt.slug %}">
+                            <img src="{% if dt.imgVisualizar %}{{MEDIA_URL}}{{dt.imgVisualizar}}{%else%}{{MEDIA_URL}}fondotesis.jpg{% endif %}"
+                            style="height:160px;display:block; margin-left:auto; margin-right:auto; width:90%;" /></a>
+                        </div>  
+                        <div id="caja3">
+                            <dl>
+                            <dd style="margin: 0;">
+                            <p class="" style="padding:.5em; margin: 0;">
+                            <div class="pull-left"><b class="green">{{dt.facultad__Desc_Facultad}}</b></div>
+                            <div class="pull-left"><b class="blue">{{dt.escuela__Desc_Escuela}}</b></div>
+                            <div class="pull-left"><span class="fa fa-calendar"></span>  Fecha Aprobaci&oacute;n: {{dt.FechaAceptacion|date:"d-m-Y"}} </div>
+                            <div class="pull-left"><span class="glyphicon glyphicon-eye-open"></span>  Visitas: {% cycle '4.6K' '3.8K' '678' '100' '26' %}</div>                                
+                            </p>
+                            </dd>
+                            </dl>
+                        </div>
+                        <div id="caja4">
+                            <div class="caption">
+                                <dl>
+                                <dt><i class="ace-icon glyphicon glyphicon-book blue"></i>&ensp;
+                                    <a href="{% url 'tesispublicacion' dt.slug %}" style="color:#3a87ad;">{{ dt.title|upper|truncatewords:14 }}</a></dt>
+                                </dl>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+<style>
+    {% load staticfiles %}  
+    .jumboSearch {
+        position: relative;
+        z-index: auto;
+        border-bottom: 1px solid #e5e5e5;
+        min-height: 200px;
+        line-height: 40px;
+        padding: 0 12px 0 0;
+        background:url({% static 'app/avatars/fonjumbosearch.png' %}) no-repeat right top;
+        background-size: cover;
+        background-color: #f5f5f5;
+    }
+    .category {
+	    position: absolute;
+	    top: 10px;
+	    right: 25px;
+        margin-top: -8px;
+    }
+    
+    .blockTesis {
+        display:block;
+        width:100%;
+        border: 1px solid #d3dce7;
+        background:url({% static 'app/avatars/fondblocktesis.jpg' %}) no-repeat right bottom 16px;;
+        background-size: 70%;
+        margin:10px 0px 0px 5px;
+        padding:10px 10px 0px 10px;
+        border-top: 4px solid #8690a6;
+        border-bottom: 4px solid #8690a6;
+        position:relative;
+        border-style: solid;
+        text-decoration: none;
+    }
+    .blockTesis:hover {
+        display:block;
+        width:100%;
+        background: #edf3f8;
+        border: 1px solid #d3dce7;
+        margin:10px 0px 0px 5px;
+        padding:10px 10px 0px 10px;
+        border-top: 4px solid #8690a6;
+        border-bottom: 4px solid #288F58;
+        position:relative;
+        border-style: solid;
+        text-decoration: none;
+    }
+    .blockImageTesis {
+        
+        width:40%;
+        display:block;
+    }
+    .blockContentTesis {
+        
+        width:60%;
+        display:block;
+        position:relative;
+    }
+    #caja2{ 
+        width:38%;
+        float:left; 
+        margin-top:16px;
+    }
+    #caja3{
+        margin:16px 2px 2px 0px; 
+        border-color:green;
+        width:58%; 
+        float: right; 
+    }
+    #caja4{
+        border-color:orange; 
+        clear:both; 
+        height:75px;
+    }
+
+</style>
+<div class="space-4"></div>
+<div class="space-4"></div>
+{% endblock %}

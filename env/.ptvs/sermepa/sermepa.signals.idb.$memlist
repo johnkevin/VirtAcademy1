@@ -1,0 +1,7 @@
+signature_error
+payment_was_successful
+payment_was_error
+refund_was_successful
+deferred_cancelation_was_successful
+deferred_confirmation_was_successful
+Signal

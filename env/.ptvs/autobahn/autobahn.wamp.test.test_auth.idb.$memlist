@@ -1,0 +1,11 @@
+six
+PBKDF2_TEST_VECTORS
+absolute_import
+json
+hashlib
+auth
+TestWampAuthHelpers
+binascii
+platform
+re
+unittest

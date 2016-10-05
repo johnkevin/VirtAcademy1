@@ -1,0 +1,8 @@
+RegistrationEventTests
+test_suite
+RegisteredTests
+UnregisteredTests
+_ConformsToIObjectEvent
+ObjectEventTests
+_ConformsToIRegistrationEvent
+unittest

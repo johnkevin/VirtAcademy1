@@ -1,0 +1,14 @@
+ITransport
+Win32PipeAddress
+os
+win32api
+_pollingfile
+Failure
+IHalfCloseableProtocol
+StandardIO
+implementer
+IPushProducer
+IConsumer
+main
+IAddress
+msvcrt

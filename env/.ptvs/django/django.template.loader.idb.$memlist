@@ -1,0 +1,16 @@
+base
+render_to_string
+_dictionary_undefined
+select_template
+get_template
+_context_instance_undefined
+BaseLoader
+DjangoTemplates
+RemovedInDjango20Warning
+TemplateDoesNotExist
+_engine_list
+warnings
+Origin
+engines
+LoaderOrigin
+_dirs_undefined

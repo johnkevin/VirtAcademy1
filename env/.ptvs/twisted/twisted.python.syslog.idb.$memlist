@@ -1,0 +1,6 @@
+DEFAULT_OPTIONS
+log
+DEFAULT_FACILITY
+syslog
+startLogging
+SyslogObserver

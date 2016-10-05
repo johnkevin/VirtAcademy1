@@ -1,0 +1,15 @@
+test_xmpproutertap
+test_xishutil
+test_jabbersasl
+test_jabberjstrports
+test_xmlstream
+test_jabbersaslmechanisms
+test_jabberjid
+test_xpath
+test_basechat
+test_jabberxmlstream
+test_jabberclient
+test_domish
+test_jabberxmppstringprep
+test_jabbercomponent
+test_jabbererror
