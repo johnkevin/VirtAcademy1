@@ -23,15 +23,8 @@ DATABASES = {
     'default': {
         'ENGINE':'sql_server.pyodbc',
         #'NAME': 'SISVIR',
-        #'NAME': 'DB_9D70B3_sisvir',
-        'NAME': 'BDVIR',
-        'USER': 'administrador@virtacademy',
-        #'USER': 'DB_9D70B3_sisvir_admin',
-        #'PASSWORD': 'acceso.sisvir.123',
-        #'PASSWORD': 'Acceso12#$',
-        'PASSWORD': 'gestoria$%)$%5',
-        #'HOST': 'SQL5031.Smarterasp.net',
-        'HOST': 'tcp:virtacademy.database.windows.net',
+        #'PASSWORD': '',
+        #'HOST': 'PC-CRUSH',
         'PORT': '1433',
         'OPTIONS': {
                 'driver': 'SQL Server Native Client 11.0',
